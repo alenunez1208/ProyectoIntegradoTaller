@@ -1,0 +1,11 @@
+.jumbotron {
+    background-image: url("../images/cabecera.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
+#logo {
+    margin-left: 20%;
+    width: 40%;
+    height: 40%;
+}
