@@ -1,7 +1,7 @@
 .jumbotron {
     background-image: url("../images/cabecera2.jpg");
     background-repeat: no-repeat;
-    background-size: 100%;
+    background-size: 100% 100%;
 }
 
 #logo {
@@ -10,6 +10,6 @@
     height: 40%;
 }
 
-/*#myCarousel {
-    width: 95.5%;
-}*/
+.footer {
+	background-color: grey;
+}
