@@ -46,6 +46,22 @@
 
 
 /*----------------------PREGUNTAS Y PRESUPUESTOS---------------------*/
+#fotoPresupuesto {
+	width: 100%;
+	height: 100%;
+}
+
+.asterisco{
+	color: red;
+}
+
+#botonesForm {
+	float: right;
+}
+
+#tituloCuestion {
+	border-bottom: 1px solid black;
+}
 /*-------------------------------------------------------------------*/
 
 
