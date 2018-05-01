@@ -13,9 +13,6 @@
 
 <body>
 	<div class="container">
-
-
-
 		<div class="jumbotron">
 			<div class="row">
 				<div class="col-xs-7 col-sm-7 col-md-7 col-lg-7">
@@ -38,13 +35,13 @@
 				<div class="collapse navbar-collapse" id="myNavbar">
 					<ul class="nav navbar-nav">
 						<li>
-							<a href="index.html"><i class="glyphicon glyphicon-home"></i>&nbsp Inicio</a>
+							<a href="index.html"><i class="glyphicon glyphicon-home"></i> Inicio</a>
 						</li>
 						<li>
-							<a href="paginas/localizacionycontacto.html"><i class="glyphicon glyphicon-globe"></i>&nbsp Dónde Estamos</a>
+							<a href="paginas/localizacionycontacto.html"><i class="glyphicon glyphicon-globe"></i> Dónde Estamos</a>
 						</li>
 						<li>
-							<a href="paginas/preguntas.html"><i class="glyphicon glyphicon-piggy-bank"></i>&nbsp Presupuestos y Preguntas</a>
+							<a href="paginas/preguntas.html"><i class="glyphicon glyphicon-piggy-bank"></i> Presupuestos y Preguntas</a>
 						</li>
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
@@ -122,16 +119,39 @@
 		<br>
 		<div class="footer">
 			<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-				eeeeee
+				<p>
+					<span class="glyphicon glyphicon-home"></span>&nbsp Via Flaminia, s/n, 41089 Dos Hermanas, Sevilla <br>
+					<span class="glyphicon glyphicon-time"></span>&nbsp Lunes a viernes: 07:00 - 17:00<br>
+					<span class="glyphicon glyphicon-time"></span>&nbsp Sábados: 08.00 - 15:00<br>
+					<span class="glyphicon glyphicon-phone-alt"></span>&nbsp 954 12 45 87 26<br>
+					<span class="glyphicon glyphicon-earphone"></span>&nbsp 689 65 47 85
+					
+				</p>
 			</div>
 			<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-				eeeeee
+				<img src="images/iconos/tw1.png" id="tw1" alt="tw1">
+				<img src="images/iconos/tw2.png" id="tw2" alt="tw2">
 			</div>
 			<div class="hidden-xs hidden-sm col-md-4 col-lg-4">
 				eeeeeee
 			</div> 
 		</div>
 	</div>
+
+	<script>
+		$(document).ready(function(){
+			$("#tw1").on({
+				mouseenter: function(){
+					$("#tw2").hover(); 
+					$(this).hide(); 
+				},  
+				mouseleave: function(){
+					$("#tw2").hide(); 
+					$(this).hover(); 
+				}	
+			});
+		});
+	</script>
 </body>
 
 </html>
