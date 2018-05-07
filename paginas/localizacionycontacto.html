@@ -23,7 +23,7 @@
 			</div>
 		</div>
 
-		<nav class="navbar navbar-inverse static">
+		<nav class="navbar navbar-inverse">
 			<div class="container-fluid">
 				<div class="navbar-header">
 					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -42,20 +42,23 @@
 							<a href="localizacionycontacto.html">
 								<i class="glyphicon glyphicon-globe"></i> Dónde Estamos</a>
 						</li>
-						<li>
+						<li id="presupuestosYPreguntas">
 							<a href="preguntas.html">
 								<i class="glyphicon glyphicon-piggy-bank"></i> Presupuestos y Preguntas</a>
 						</li>
 					</ul>
-					<ul class="nav navbar-nav navbar-right">
+					<ul class="nav navbar-nav navbar-right" id="myBtnOther" data-toggle="modal" data-target="#myModal">
 						<li>
 							<a href="#">
-								<span class="glyphicon glyphicon-log-in"></span> Login</a>
+								<span class="glyphicon glyphicon-log-in"></span> Login
+							</a>
 						</li>
 					</ul>
 				</div>
 			</div>
 		</nav>
+
+		<div id="formLogin"></div>
 
 		<div class="row">
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -102,7 +105,7 @@
 		</div>
 		<br>
 		<br>
-		<div class="footer"  id="pie">
+		<div class="footer" id="pie">
 			<div class="row" id="columnasPie">
 				<div class="col-xs-12 col-sm-5 col-md-4 col-lg-4">
 					<h3 id="tituloCuestion">Dónde estamos</h3>
@@ -169,7 +172,9 @@
 		</div>
 	</div>
 
-	<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+	<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>	
+	<script type="text/javascript" src="../js/ajax.js"></script>
+	<script type="text/javascript" src="../js/principal.js"></script>
 </body>
 
 </html>

@@ -23,7 +23,7 @@
 			</div>
 		</div>
 
-		<nav class="navbar navbar-inverse static">
+		<nav class="navbar navbar-inverse">
 			<div class="container-fluid">
 				<div class="navbar-header">
 					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -42,68 +42,29 @@
 							<a href="localizacionycontacto.html">
 								<i class="glyphicon glyphicon-globe"></i> Dónde Estamos</a>
 						</li>
-						<li>
+						<li id="presupuestosYPreguntas">
 							<a href="preguntas.html">
 								<i class="glyphicon glyphicon-piggy-bank"></i> Presupuestos y Preguntas</a>
 						</li>
 					</ul>
-					<ul class="nav navbar-nav navbar-right">
+					<ul class="nav navbar-nav navbar-right" id="myBtnOther" data-toggle="modal" data-target="#myModal">
 						<li>
 							<a href="#">
-								<span class="glyphicon glyphicon-log-in"></span> Login</a>
+								<span class="glyphicon glyphicon-log-in"></span> Login
+							</a>
 						</li>
 					</ul>
 				</div>
 			</div>
 		</nav>
 
-		<div class="row">
-			<div class="hidden-xs col-sm-4 col-md-4 col-lg-4">
-				<br>
-				<br>
-				<img src="../images/presupuesto.jpg" id="fotoPresupuesto" alt="presupuesto">
-			</div>
-			<div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
-				<h2 id="tituloCuestion">Contacte con Nosotros</h2>
-				<p>Puedes utilizar este formulario para pedir un presupuesto o formularnos una simple cuestión que usted tenga y nosotros
-					nos pondremos en contacto lo antes posible.</p>
-				<br>
-				<form id="frmPresupuesto" name="frmPresupuesto">
-					<div class="form-group">
-						<label for="txtTitulo">Título
-							<span class="asterisco">*</span>
-						</label>
-						<input type="text" class="form-control" name="txtTitulo" id="txtTitulo" placeholder="Asunto" required>
-					</div>
-					<div class="form-group">
-						<label for="txtEmail">Correo Electrónico
-							<span class="asterisco">*</span>
-						</label>
-						<input type="text" class="form-control" id="txtEmail" name="txtEmail" placeholder="Email" required>
-					</div>
-					<div class="form-group">
-						<label for="txtTelefono">Télefono de Contacto
-							<span class="asterisco">*</span>
-						</label>
-						<input type="text" class="form-control" id="txtTelefono" name="txtTelefono" placeholder="Teléfono" required>
-					</div>
-					<div class="form-group">
-						<label for="txtDescripcion">Motivo de la Pegunta
-							<span class="asterisco">*</span>
-						</label>
-						<textarea class="form-control" rows="5" id="txtDescripcion" name="txtDescripcion" placeholder="Introduzca su cuestión" required></textarea>
-					</div>
-					<div id="botonesForm">
-						<button type="button" id="btnEnviarPregunta" name="btnEnviarPregunta" class="btn btn-primary">Enviar</button>
-						<button type="reset" class="btn btn-danger">Limpiar Campos</button>
-					</div>
-				</form>
-			</div>
-		</div>
+		<div id="formLogin"></div>
+
+		<div id="formulario"></div>
 		<br>
 		<br>
 		<br>
-		<div class="footer"  id="pie">
+		<div class="footer" id="pie">
 			<div class="row" id="columnasPie">
 				<div class="col-xs-12 col-sm-5 col-md-4 col-lg-4">
 					<h3 id="tituloCuestion">Dónde estamos</h3>
@@ -171,6 +132,8 @@
 	</div>
 
 	<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+	<script type="text/javascript" src="../js/ajax.js"></script>
+	<script type="text/javascript" src="../js/principal.js"></script>
 </body>
 
 </html>
