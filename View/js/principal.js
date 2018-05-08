@@ -1,7 +1,7 @@
 /*-----------------------CARGAR FRM LOGIN-------------------------*/
 $("#myBtn").click(function () {
     if ($("#myModal").length == 0) {
-        $('#formLogin').load("paginas/formularios/login.html", function () {
+        $('#formLogin').load("formularios/login.html", function () {
             $("#myModal").modal();
         });
     } else {

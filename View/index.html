@@ -5,7 +5,7 @@
 	<meta charset="UTF-8">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-	<link rel="stylesheet" href="../css/style.css">
+	<link rel="stylesheet" href="../View/css/style.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -16,7 +16,7 @@
 		<div class="jumbotron">
 			<div class="row">
 				<div class="col-xs-7 col-sm-7 col-md-7 col-lg-7">
-					<img src="../images/logo2.png" id="logo" alt="Taller Mecanico CarQuinto">
+					<img src="../View/images/logo2.png" id="logo" alt="Taller Mecanico CarQuinto">
 				</div>
 				<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
 				</div>
@@ -35,19 +35,19 @@
 				<div class="collapse navbar-collapse" id="myNavbar">
 					<ul class="nav navbar-nav">
 						<li>
-							<a href="../index.html">
+							<a href="../View/index.html">
 								<i class="glyphicon glyphicon-home"></i> Inicio</a>
 						</li>
 						<li>
-							<a href="localizacionycontacto.html">
+							<a href="../View/localizacionycontacto.html">
 								<i class="glyphicon glyphicon-globe"></i> Dónde Estamos</a>
 						</li>
 						<li id="presupuestosYPreguntas">
-							<a href="preguntas.html">
+							<a href="../View/preguntas.html">
 								<i class="glyphicon glyphicon-piggy-bank"></i> Presupuestos y Preguntas</a>
 						</li>
 					</ul>
-					<ul class="nav navbar-nav navbar-right" id="myBtnOther" data-toggle="modal" data-target="#myModal">
+					<ul class="nav navbar-nav navbar-right" id="myBtn" data-toggle="modal" data-target="#myModal">
 						<li>
 							<a href="#">
 								<span class="glyphicon glyphicon-log-in"></span> Login
@@ -59,50 +59,69 @@
 		</nav>
 
 		<div id="formLogin"></div>
+		
+		<div class="row">
+			<div class="hidden-xs col-sm-12 col-md-12 col-lg-12">
+				<div id="myCarousel" class="carousel slide" data-ride="carousel">
+					<!-- Indicators -->
+					<ol class="carousel-indicators">
+						<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+						<li data-target="#myCarousel" data-slide-to="1"></li>
+						<li data-target="#myCarousel" data-slide-to="2"></li>
+						<li data-target="#myCarousel" data-slide-to="3"></li>
+						<li data-target="#myCarousel" data-slide-to="4"></li>
+					</ol>
 
-		<div class="row">
-			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-				<iframe id="maps" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3171.6946987214938!2d-5.945623684694537!3d37.34973597983909!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd126fb4c4e06dbb%3A0x60a13f5ae2ae15d6!2sIES+Hermanos+Machado!5e0!3m2!1ses!2ses!4v1524552567646"
-				 frameborder="0" style="border:0" allowfullscreen></iframe>
-				<hr>
-			</div>
-		</div>
-		<br>
-		<div class="row">
-			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-				<div id="tituloLoc">
-					<h1>Estamos en Dos Hermanas, Sevilla</h1>
-					<h2>Taller Mecánico CarQuinto S.L.</h2>
-					<h4>El taller multimarca más grande de Andalucía.</h4>
+					<!-- Wrapper for slides -->
+					<div class="carousel-inner">
+						<div class="item active">
+							<img src="../View/images/carrousel/c1.jpg" alt="foto1" style="width:100%;">
+						</div>
+
+						<div class="item">
+							<img src="../View/images/carrousel/c2.jpg" alt="foto2" style="width:100%;">
+						</div>
+
+						<div class="item">
+							<img src="../View/images/carrousel/c3.jpg" alt="foto3" style="width:100%;">
+						</div>
+
+						<div class="item">
+							<img src="../View/images/carrousel/c4.jpg" alt="foto4" style="width:100%;">
+						</div>
+
+						<div class="item">
+							<img src="../View/images/carrousel/c5.jpg" alt="foto5" style="width:100%;">
+						</div>
+					</div>
+
+					<!-- Left and right controls -->
+					<a class="left carousel-control" href="#myCarousel" data-slide="prev">
+						<span class="glyphicon glyphicon-chevron-left"></span>
+						<span class="sr-only">Previous</span>
+					</a>
+					<a class="right carousel-control" href="#myCarousel" data-slide="next">
+						<span class="glyphicon glyphicon-chevron-right"></span>
+						<span class="sr-only">Next</span>
+					</a>
 				</div>
 			</div>
 		</div>
-		<br>
-		<br>
-		<br>
+
 		<div class="row">
-			<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-				<img src="../images/iconos/telefono.png" class="iconostlf" alt="telefono">
-				<br>
-				<br>
-				<p class="textContacto">Tel: 954 12 45 87 26
-					<br> Mvl: 689 65 47 85</p>
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+				<p>Index</p>
 			</div>
-			<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-				<img src="../images/iconos/reloj.png" class="iconos" alt="reloj">
-				<br>
-				<br>
-				<p class="textContacto">LUNES A VIERNES: 07:00 - 17:00
-					<br> SÁBADOS: 08.00 - 15:00
-					<br> DOMINGOS: CERRADO</p>
+			<!--<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+				<a href="https://twitter.com/alenunez1208?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @alenunez1208</a>
+				<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+				<a class="twitter-timeline" data-width="300" data-height="300" href="https://twitter.com/alenunez1208?ref_src=twsrc%5Etfw">Tweets by alenunez1208</a>
+				<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 			</div>
-			<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-				<img src="../images/iconos/mapa.png" class="iconos" alt="mapa">
-				<br>
-				<br>
-				<p class="textContacto">Via Flaminia, s/n, 41089 Dos Hermanas, Sevilla</p>
-			</div>
+			<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+			</div>-->
 		</div>
+		<br>
 		<br>
 		<br>
 		<div class="footer" id="pie">
@@ -139,19 +158,19 @@
 						<!-- Wrapper for slides -->
 						<div class="carousel-inner">
 							<div class="item active">
-								<img src="../images/carrousel-seguros/seguros1.JPG" alt="foto1" style="width:100%;">
+								<img src="../View/images/carrousel-seguros/seguros1.JPG" alt="foto1" style="width:100%;">
 							</div>
 
 							<div class="item">
-								<img src="../images/carrousel-seguros/seguros2.JPG" alt="foto2" style="width:100%;">
+								<img src="../View/images/carrousel-seguros/seguros2.JPG" alt="foto2" style="width:100%;">
 							</div>
 
 							<div class="item">
-								<img src="../images/carrousel-seguros/seguros3.JPG" alt="foto3" style="width:100%;">
+								<img src="../View/images/carrousel-seguros/seguros3.JPG" alt="foto3" style="width:100%;">
 							</div>
 
 							<div class="item">
-								<img src="../images/carrousel-seguros/seguros4.JPG" alt="foto4" style="width:100%;">
+								<img src="../View/images/carrousel-seguros/seguros4.JPG" alt="foto4" style="width:100%;">
 							</div>
 						</div>
 
@@ -172,9 +191,9 @@
 		</div>
 	</div>
 
-	<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>	
-	<script type="text/javascript" src="../js/ajax.js"></script>
-	<script type="text/javascript" src="../js/principal.js"></script>
+	<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+	<script type="text/javascript" src="../View/js/ajax.js"></script>
+	<script type="text/javascript" src="../View/js/principal.js"></script>
 </body>
 
 </html>
