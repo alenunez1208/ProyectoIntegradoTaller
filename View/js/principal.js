@@ -11,6 +11,7 @@ $("#myBtn").click(function () {
 });
 /*----------------------------------------------------------------*/
 
+var bFormularioPreguntasCargado= false;
 $("#presupuestosYPreguntas").click(cargarFrmPreguntas());
 
 function mostrarFormularios(sForm) {
@@ -24,7 +25,16 @@ function cargarFrmPreguntas(){
     if ($('#frmPreguntasMostrar').length == 0) {
         $('#formulario').load("formularios/frmPreguntas.html", function()
         {
-            
+            if(bFormularioPreguntasCargado){
+                var btnEnviarPregunta= document.getElementById("btnEnviarPregunta");
+                btnEnviarPregunta.addEventListener("click", enviarPregunta, false);
+            } else{
+                $.getScript("js/clases/Pregunta.js");
+                $.getScript("js/gestionPregunta.js", function(){
+                    var btnEnviarPregunta= document.getElementById("btnEnviarPregunta");
+                    btnEnviarPregunta.addEventListener("click", enviarPregunta, false);
+                });
+            }
         });
     } else {
         $('#formulario').show("normal");
