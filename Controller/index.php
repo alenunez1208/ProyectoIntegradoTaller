@@ -5,7 +5,7 @@
     session_start();
     $_SESSION['cerrarSesion'] = false;
    
-    if (isset($_POST['cerrarSesion'])) {
+    if (isset($_POST['btnCerrarSesion'])) {
         session_destroy();
         $_SESSION['cerrarSesion'] = true;
     }
@@ -17,9 +17,8 @@
 
     if (isset($_SESSION['username']) && isset($_SESSION['password']) && $_SESSION['cerrarSesion'] == false) {
         $usuario = miClase::obtieneUsuario($_SESSION['username'],$_SESSION['password']);
-        
-        echo $usuario->getTipo();
-
+        $nombreUser= $usuario->getNombre();            
+    
         if ($usuario->getTipo()=="usuario") {
             require_once "../View/panelUsuario.html";
         } else if ($usuario->getTipo()=="admin"){

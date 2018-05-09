@@ -9,17 +9,6 @@ $("#myBtn").click(function () {
     }
 
 });
-
-$("#myBtnOther").click(function () {
-    if ($("#myModal").length == 0) {
-        $('#formLogin').load("formularios/login.html", function () {
-            $("#myModal").modal();
-        });
-    } else {
-        $('#myModal').show("normal");
-    }
-
-});
 /*----------------------------------------------------------------*/
 
 $("#presupuestosYPreguntas").click(cargarFrmPreguntas());

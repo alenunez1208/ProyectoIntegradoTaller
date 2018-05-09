@@ -7,7 +7,7 @@
         protected $telefono;
         protected $tipo;
 
-        public function __constructor($row){
+        public function __construct($row){
             $this->nombre= $row["nombre"];
             $this->apellidos= $row["apellidos"];
             $this->email= $row["email"];

@@ -34,24 +34,28 @@
 				</div>
 				<div class="collapse navbar-collapse" id="myNavbar">
 					<ul class="nav navbar-nav">
-						<li>
-							<a href="../View/index.html">
+						<li id="indexUsuario">
+							<a href="#">
 								<i class="glyphicon glyphicon-home"></i> Inicio</a>
 						</li>
-						<li>
-							<a href="../View/localizacionycontacto.html">
-								<i class="glyphicon glyphicon-globe"></i> Dónde Estamos</a>
+						<li id="solicitudDeCitas">
+							<a href="#">
+								<i class="glyphicon glyphicon-wrench"></i> Pide Cita</a>
 						</li>
 						<li id="presupuestosYPreguntas">
-							<a href="../View/preguntas.html">
+							<a href="#">
 								<i class="glyphicon glyphicon-piggy-bank"></i> Presupuestos y Preguntas</a>
 						</li>
 					</ul>
-					<ul class="nav navbar-nav navbar-right" id="myBtn" data-toggle="modal" data-target="#myModal">
+					<ul class="nav navbar-nav navbar-right" id="btnUser">
 						<li>
-							<a href="#">
-								<span class="glyphicon glyphicon-log-in"></span> Login
+							<a href="#" class="dropdown-toggle" id="menu1" data-toggle="dropdown">
+								<span class="glyphicon glyphicon-user"></span> Bienvenido <?php echo $nombreUser ?>
 							</a>
+							<ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+								<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Editar Perfil</a></li>
+								<li role="presentation"><form name="cerrarSesion" id="cerrarSesion" method="post" action="../Controller/index.php"><button type="submit" name="btnCerrarSesion" id="btnCerrarSesion"><a role="menuitem" tabindex="-1" href="#">Cerrar Sesión</a></button></form></li>   
+							</ul>
 						</li>
 					</ul>
 				</div>
@@ -62,8 +66,10 @@
 		
 		<div class="row">
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                <p>Usuario</p>
-                <a value="cerrarSesion" href="../Controller/index.php">Cerrar Sesión</a>
+				<p>Usuario</p>
+				<form  name="cerrarSesion" id="cerrarSesion" method="post" action="../Controller/index.php">
+					Cerrar Sesión
+				</form>
 			</div>
 		</div>
 		<br>
