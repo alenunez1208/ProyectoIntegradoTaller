@@ -2,25 +2,15 @@
     $sDatos = $_REQUEST["datos"];
     $oDatos = json_decode($sDatos);
 
-    $to_address = "nunezmontequinto2@gmail.com";
-    $from_address = $oDatos->email;
+    $to_address = $oDatos->email;
+    $from_address = "nunezmontequinto2@gmail.com";
     $subject = $oDatos->titulo;
     $message = $oDatos->mensaje;
     $headers = array();
-    $limite = '==MP_Bound_xyccr948x==';
     $headers[] = 'MIME-Version: 1.0';
-    $headers[] = 'Content-type: multipart/alternative; limite="' . $limite . '"';
+    $headers[] = 'Content-type: text/html; charset="iso-8859-1"' ;
+    $headers[] ='Content-Transfer-Encoding: 7bit' ;
     $headers[] = 'From: ' . $from_address;
-    $msg_body = 'This is a Multipart Message in MIME format.' . "\n";
-    $msg_body .= '--' . $limite . "\n";
-    $msg_body .= 'Content-type: text/html; charset="iso-8859-1"' . "\n";
-    $msg_body .= 'Content-Transfer-Encoding: 7bit' . "\n\n";
-    $msg_body .= $message . "\n";
-    $msg_body .= '--' . $limite . "\n";
-    $msg_body .= 'Content-type: text/plain; charset="iso-8859-1"' . "\n";
-    $msg_body .= 'Content-Transfer-Encoding: 7bit' . "\n\n";
-    $msg_body .= strip_tags($message) . "\n";
-    $msg_body .= '--' . $limite . '--' . "\n";
     
     $success = mail($to_address, $subject, $message,  join("\r\n",$headers));
     if ($success) {
