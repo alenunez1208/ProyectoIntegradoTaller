@@ -1,9 +1,10 @@
 <?php
     $sDatos = $_REQUEST["datos"];
     $oDatos = json_decode($sDatos);
+    $resultado= false;
 
-    $to_address = $oDatos->email;
-    $from_address = "nunezmontequinto2@gmail.com";
+    $to_address = "nunezmontequinto2@gmail.com";
+    $from_address = $oDatos->email;
     $subject = $oDatos->titulo;
     $message = $oDatos->mensaje;
     $headers = array();

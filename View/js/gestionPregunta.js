@@ -17,6 +17,7 @@ function respuestaPregunta(oDatosDevuelto, sStatus, oAjax){
 	if(oDatosDevuelto[0]){
         document.frmPresupuesto.reset();
         alert("mensaje enviado");
-		mensaje(oDatosDevuelto[1]);
-	}
+	} else{
+        alert("fallo al enviar mensaje");
+    }
 }
