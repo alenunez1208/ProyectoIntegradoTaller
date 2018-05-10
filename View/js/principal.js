@@ -12,31 +12,53 @@ $("#myBtn").click(function () {
 /*----------------------------------------------------------------*/
 
 var bFormularioPreguntasCargado= false;
-$("#presupuestosYPreguntas").click(cargarFrmPreguntas());
+$("#inicio").click(cargarFrmIndex);
+$("#localizacion").click(cargarFrmLocalizacion);
+$("#presupuestosYPreguntas").click(cargarFrmPreguntas);
 
 function mostrarFormularios(sForm) {
-    $("#formulario form:not('#" + sForm + "')").hide("normal");
-    $("#formulario").show("normal");
+    $("#formulario div:not('#"+sForm+"')").hide("normal");
+    $("#formulario #form").show("normal");
 }
 
 function cargarFrmPreguntas(){
     mostrarFormularios("frmPreguntasMostrar");
     
     if ($('#frmPreguntasMostrar').length == 0) {
-        $('#formulario').load("formularios/frmPreguntas.html", function()
+        $("<div id='form'>").appendTo('#formulario').load("../View/formularios/frmPreguntas.html", function()
         {
             if(bFormularioPreguntasCargado){
                 var btnEnviarPregunta= document.getElementById("btnEnviarPregunta");
                 btnEnviarPregunta.addEventListener("click", enviarPregunta, false);
             } else{
-                $.getScript("js/clases/Pregunta.js");
-                $.getScript("js/gestionPregunta.js", function(){
+                $.getScript("../View/js/clases/Pregunta.js");
+                $.getScript("../View/js/gestionPregunta.js", function(){
                     var btnEnviarPregunta= document.getElementById("btnEnviarPregunta");
                     btnEnviarPregunta.addEventListener("click", enviarPregunta, false);
                 });
             }
         });
     } else {
-        $('#formulario').show("normal");
+        $('#frmPreguntasMostrar').show("normal");
+    }
+}
+
+function cargarFrmIndex(){
+    mostrarFormularios("frmIndex");
+    
+    if ($('#frmIndex').length == 0) {
+        $("<div id='form>").appendTo('#formulario').load("../View/formularios/frmIndex.html");
+    } else {
+        $('#frmIndex').show("normal");
+    }
+}
+
+function cargarFrmLocalizacion(){
+    mostrarFormularios("frmLocalizacion");
+    
+    if ($('#frmLocalizacion').length == 0) {
+        $("<div id='form>").appendTo('#formulario').load("../View/formularios/frmLocalizacion.html");
+    } else {
+        $('#frmLocalizacion').show("normal");
     }
 }
