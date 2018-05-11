@@ -15,7 +15,10 @@ $("#myBtn").click(function () {
 var bFormularioPreguntasCargado= false;
 $("#inicio").click(cargarFrmIndex);
 $("#localizacion").click(cargarFrmLocalizacion);
-$("#presupuestosYPreguntas").click(cargarFrmPreguntas);
+$("#presupuestosYPreguntas").click(function(){
+    var usuario= "no";
+    cargarFrmPreguntas(usuario);
+});
 
 function mostrarFormularios(sForm) {
     $("#formulario>div:not('."+sForm+"')").hide();	
@@ -41,7 +44,7 @@ function cargarFrmLocalizacion(){
     }
 }
 
-function cargarFrmPreguntas(){
+function cargarFrmPreguntas(usuario){
     mostrarFormularios("frmPreguntasMostrar");
     
     if ($('#frmPreguntasMostrar').length == 0) {
@@ -50,13 +53,20 @@ function cargarFrmPreguntas(){
             if(bFormularioPreguntasCargado){
                 var btnEnviarPregunta= document.getElementById("btnEnviarPregunta");
                 btnEnviarPregunta.addEventListener("click", enviarPregunta, false);
-                rellenarFrmPreguntas();
+                if(usuario == "si"){
+                    $("#txtEmail").attr("readonly",true);
+                    $("#txtTelefono").attr("readonly",true);
+                }
             } else{
 				bFormularioPreguntasCargado= true;
                 $.getScript("../View/js/clases/Pregunta.js");
                 $.getScript("../View/js/gestionPregunta.js", function(){
                     var btnEnviarPregunta= document.getElementById("btnEnviarPregunta");
                     btnEnviarPregunta.addEventListener("click", enviarPregunta, false);
+                    if(usuario == "si"){
+                        $("#txtEmail").attr("readonly",true);
+                        $("#txtTelefono").attr("readonly",true);
+                    }
                 });
             }
         });
@@ -71,12 +81,11 @@ $("#enlaceCerrarSesion").click(function(){
 	$("#cerrarSesion").submit();
 });
 
-$(".rellenaCampos").click(rellenarFrmPreguntas);
+$("#presupuestosYPreguntasUsuario").click(function(){
+    usuario= "si";
+    cargarFrmPreguntas(usuario);
+});
 
-function rellenarFrmPreguntas(){
-    $("#txtEmail").attr("readonly",true);
-    $("#txtTelefono").attr("readonly",true);
-}
 
 /*----------------------------------------------------------------*/
 

@@ -22,3 +22,7 @@ function respuestaPregunta(oDatosDevuelto, sStatus, oAjax){
 		}
 	
 }
+
+function rellenaCamposUsuario(){
+    
+}
