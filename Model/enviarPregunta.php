@@ -1,7 +1,7 @@
 <?php
     $sDatos = $_REQUEST["datos"];
     $oDatos = json_decode($sDatos);
-    $resultado= false;
+	$respuesta= false;
 
     $to_address = "nunezmontequinto2@gmail.com";
     $from_address = $oDatos->email;
@@ -15,14 +15,9 @@
     
     $success = mail($to_address, $subject, $message,  join("\r\n",$headers));
     if ($success) {
-        echo '<h1>Enhorabuena!</h1>';
-        echo '<p>El  siguiente mensaje ha sido enviado: <br/><br/>';
-        echo '<b>To:</b> ' . $to_address . '<br/>';
-        echo '<b>From:</b> ' . $from_address . '<br/>';
-        echo '<b>Subject:</b> ' . $subject . '<br/>';
-        echo '<b>Message:</b></p>';
-        echo nl2br($message);
+		echo json_encode(true);
+        
     } else {
-        echo '<p><strong>Se produjo un error al enviar su mensaje.</strong></p>';
-    }
+        echo json_encode(false);
+    }	
 ?>

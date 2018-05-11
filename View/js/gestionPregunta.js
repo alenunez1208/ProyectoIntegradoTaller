@@ -14,10 +14,11 @@ function enviarPregunta(oEvento){
 }
 
 function respuestaPregunta(oDatosDevuelto, sStatus, oAjax){
-	if(oDatosDevuelto[0]){
-        document.frmPresupuesto.reset();
-        alert("mensaje enviado");
-	} else{
-        alert("fallo al enviar mensaje");
-    }
+		if (oDatosDevuelto == true){
+				alert("Correo enviado");
+				document.frmPresupuesto.reset();
+		} else {
+			alert("Problemas en el envío del correo");
+		}
+	
 }
