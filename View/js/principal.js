@@ -11,7 +11,7 @@ $("#myBtn").click(function () {
 
 });
 /*----------------------------------------------------------------*/
-
+/*--------------------------SIN LOGUEO----------------------------*/
 var bFormularioPreguntasCargado= false;
 $("#inicio").click(cargarFrmIndex);
 $("#localizacion").click(cargarFrmLocalizacion);
@@ -19,29 +19,6 @@ $("#presupuestosYPreguntas").click(cargarFrmPreguntas);
 
 function mostrarFormularios(sForm) {
     $("#formulario>div:not('."+sForm+"')").hide();	
-}
-
-function cargarFrmPreguntas(){
-    mostrarFormularios("frmPreguntasMostrar");
-    
-    if ($('#frmPreguntasMostrar').length == 0) {
-        $("<div class='frmPreguntasMostrar'>").appendTo('#formulario').load("../View/formularios/frmPreguntas.html", function()
-        {
-            if(bFormularioPreguntasCargado){
-                var btnEnviarPregunta= document.getElementById("btnEnviarPregunta");
-                btnEnviarPregunta.addEventListener("click", enviarPregunta, false);
-            } else{
-				bFormularioPreguntasCargado= true;
-                $.getScript("../View/js/clases/Pregunta.js");
-                $.getScript("../View/js/gestionPregunta.js", function(){
-                    var btnEnviarPregunta= document.getElementById("btnEnviarPregunta");
-                    btnEnviarPregunta.addEventListener("click", enviarPregunta, false);
-                });
-            }
-        });
-    } else {
-        $('.frmPreguntasMostrar').css("display","block");
-    }
 }
 
 function cargarFrmIndex(){
@@ -64,8 +41,42 @@ function cargarFrmLocalizacion(){
     }
 }
 
-console.log(document.getElementById("enlaceCerrarSesion"));
+function cargarFrmPreguntas(){
+    mostrarFormularios("frmPreguntasMostrar");
+    
+    if ($('#frmPreguntasMostrar').length == 0) {
+        $("<div class='frmPreguntasMostrar'>").appendTo('#formulario').load("../View/formularios/frmPreguntas.html", function()
+        {
+            if(bFormularioPreguntasCargado){
+                var btnEnviarPregunta= document.getElementById("btnEnviarPregunta");
+                btnEnviarPregunta.addEventListener("click", enviarPregunta, false);
+                rellenarFrmPreguntas();
+            } else{
+				bFormularioPreguntasCargado= true;
+                $.getScript("../View/js/clases/Pregunta.js");
+                $.getScript("../View/js/gestionPregunta.js", function(){
+                    var btnEnviarPregunta= document.getElementById("btnEnviarPregunta");
+                    btnEnviarPregunta.addEventListener("click", enviarPregunta, false);
+                });
+            }
+        });
+    } else {
+        $('.frmPreguntasMostrar').css("display","block");
+    }
+}
+
+/*----------------------------------------------------------------*/
+/*-------------------------PANEL USUARIO--------------------------*/
 $("#enlaceCerrarSesion").click(function(){
-	console.log("entro");
 	$("#cerrarSesion").submit();
 });
+
+$(".rellenaCampos").click(rellenarFrmPreguntas);
+
+function rellenarFrmPreguntas(){
+    $("#txtEmail").attr("readonly",true);
+    $("#txtTelefono").attr("readonly",true);
+}
+
+/*----------------------------------------------------------------*/
+

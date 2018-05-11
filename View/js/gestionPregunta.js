@@ -15,8 +15,8 @@ function enviarPregunta(oEvento){
 
 function respuestaPregunta(oDatosDevuelto, sStatus, oAjax){
 		if (oDatosDevuelto == true){
-				alert("Correo enviado");
-				document.frmPresupuesto.reset();
+            alert("Correo enviado");
+            document.frmPresupuesto.reset();
 		} else {
 			alert("Problemas en el envío del correo");
 		}
