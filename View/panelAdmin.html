@@ -37,11 +37,15 @@
 					<ul class="nav navbar-nav">
 						<li>
 							<a id="altaUsuarios" href="#">
-								<i class="glyphicon glyphicon-home"></i> Alta Usuarios</a>
+								<i class="glyphicon glyphicon-plus-sign"></i> Alta Usuarios</a>
+						</li>
+						<li>
+							<a id="solicitudCitas" href="#">
+								<i class="glyphicon glyphicon-check"></i> Solicitudes Pendientes</a>
 						</li>
 						<li>
 							<a class="dropdown-toggle" id="listados" href="#" data-toggle="dropdown">
-								<i class="glyphicon glyphicon-wrench"></i> Listados</a>
+								<i class="glyphicon glyphicon-list"></i> Listados</a>
 
 							<ul class="dropdown-menu" role="menu" aria-labelledby="listados">
 								<li role="presentation">
@@ -61,10 +65,10 @@
 							</a>
 							<ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
 								<li role="presentation">
-									<a role="menuitem" tabindex="-1" href="#">Editar Perfil</a>
+									<a role="menuitem" tabindex="-1" href="#">Editar Perfil <i class="glyphicon glyphicon-pencil"></i></a>
 								</li>
 								<li role="presentation">
-									<a role="menuitem" id="enlaceCerrarSesion" tabindex="-1" href="#">Cerrar Sesión</a>
+									<a role="menuitem" id="enlaceCerrarSesion" tabindex="-1" href="#">Cerrar Sesión <i class="glyphicon glyphicon-log-out"></i></a>
 								</li>
 								<form name="cerrarSesion" id="cerrarSesion" method="post" action="../Controller/index.php">
 									<input type="hidden" name="btnCerrarSesion" id="btnCerrarSesion">
@@ -78,9 +82,62 @@
 
 		<div id="formLogin"></div>
 
-		<div class="row">
-			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-				<p>Admin</p>
+		<div id="frmNuevoUsuario">
+			<div class="row">
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+					<h2>Nuevo Usuario</h2>
+					<br>
+					<div class="hidden-xs col-sm-1 col-md-2 col-lg-2"></div>
+					<form name="frmAltaUsuario" id="frmAltaUsuario">
+						<div class="form-group col-xs-12 col-sm-5 col-md-4 col-lg-4">
+							<label for="txtTitulo">Título
+								<span class="asterisco">*</span>
+							</label>
+							<input type="text" class="form-control" name="txtTitulo" id="txtTitulo" placeholder="Asunto" required>
+						</div>
+						<div class="form-group col-xs-12 col-sm-5 col-md-4 col-lg-4">
+							<label for="txtTitulo">Título
+								<span class="asterisco">*</span>
+							</label>
+							<input type="text" class="form-control" name="txtTitulo" id="txtTitulo" placeholder="Asunto" required>
+						</div>
+						<div class="form-group col-xs-12 col-sm-5 col-md-4 col-lg-4">
+							<label for="txtTitulo">Título
+								<span class="asterisco">*</span>
+							</label>
+							<input type="text" class="form-control" name="txtTitulo" id="txtTitulo" placeholder="Asunto" required>
+						</div>
+						<div class="form-group col-xs-12 col-sm-5 col-md-4 col-lg-4">
+							<label for="txtTitulo">Título
+								<span class="asterisco">*</span>
+							</label>
+							<input type="text" class="form-control" name="txtTitulo" id="txtTitulo" placeholder="Asunto" required>
+						</div>
+						<div class="form-group col-xs-12 col-sm-5 col-md-4 col-lg-4">
+							<label for="txtTitulo">Título
+								<span class="asterisco">*</span>
+							</label>
+							<input type="text" class="form-control" name="txtTitulo" id="txtTitulo" placeholder="Asunto" required>
+						</div>
+						<div class="form-group col-xs-12 col-sm-5 col-md-4 col-lg-4">
+							<label for="txtTitulo">Título
+								<span class="asterisco">*</span>
+							</label>
+							<input type="text" class="form-control" name="txtTitulo" id="txtTitulo" placeholder="Asunto" required>
+						</div>
+						<div class="col-xs-12 col-sm-10 col-md-8 col-lg-8">
+							<div class="col-xs-12 col-sm-2 col-md-3 col-lg-3"></div>
+							<div class="form-group col-xs-12 col-sm-4 col-md-3 col-lg-3">
+								<button type="button" id="btnAltaUsuario" name="btnAltaUsuario" class="btn btn-primary">Dar de Alta</button>
+							</div>
+							<div class="form-group col-xs-12 col-sm-4 col-md-3 col-lg-3">
+									<button type="reset" class="btn btn-danger">Limpiar Campos</button>
+							</div>
+							<div class="col-xs-12 col-sm-2 col-md-3 col-lg-3"></div>
+						</div>
+					</form>
+					<div class="hidden-xs col-sm-1 col-md-2 col-lg-2"></div>
+				</div>
 			</div>
 		</div>
 		<br>

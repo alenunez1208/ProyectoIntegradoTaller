@@ -24,6 +24,7 @@
         } else if ($usuario->getTipo()=="admin"){
             require_once "../View/panelAdmin.html";	
         } else{
+            session_destroy();
             require_once "../View/index.html";	
         }
     } else{
