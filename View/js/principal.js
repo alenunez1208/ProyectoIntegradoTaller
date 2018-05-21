@@ -20,12 +20,12 @@ $("#presupuestosYPreguntas").click(function(){
     cargarFrmPreguntas(usuario);
 });
 
-function mostrarFormularios(sForm) {
-    $("#formulario>div:not('."+sForm+"')").hide();	
+function mostrarFormularios(sForm,sForm2) {
+    $("#"+sForm2+" >div:not('."+sForm+"')").hide();	
 }
 
 function cargarFrmIndex(){
-    mostrarFormularios("frmIndex");
+    mostrarFormularios("frmIndex","formulario");
     
     if ($('#frmIndex').length == 0) {
         $("<div class='frmIndex'>").appendTo('#formulario').load("../View/formularios/frmIndex.html");
@@ -35,7 +35,7 @@ function cargarFrmIndex(){
 }
 
 function cargarFrmLocalizacion(){
-    mostrarFormularios("frmLocalizacion");
+    mostrarFormularios("frmLocalizacion","formulario");
     
     if ($('#frmLocalizacion').length == 0) {
         $("<div class='frmLocalizacion'>").appendTo('#formulario').load("../View/formularios/frmLocalizacion.html");
@@ -45,7 +45,7 @@ function cargarFrmLocalizacion(){
 }
 
 function cargarFrmPreguntas(usuario){
-    mostrarFormularios("frmPreguntasMostrar");
+    mostrarFormularios("frmPreguntasMostrar","formulario");
     
     if ($('#frmPreguntasMostrar').length == 0) {
         $("<div class='frmPreguntasMostrar'>").appendTo('#formulario').load("../View/formularios/frmPreguntas.html", function()
@@ -89,3 +89,28 @@ $("#presupuestosYPreguntasUsuario").click(function(){
 
 /*----------------------------------------------------------------*/
 
+/*----------------------PANEL ADMINISTRADOR-----------------------*/
+$("#altaUsuarios").click(cargarFrmAltaUsuario);
+$("#solicitudCitas").click(cargarFrmSolicitudes);
+
+function cargarFrmAltaUsuario(){
+    mostrarFormularios("frmAltaUsuarioMostrar","formularioAdmin");
+    
+    if ($('#frmAltaUsuarioMostrar').length == 0) {
+        $("<div class='frmAltaUsuarioMostrar'>").appendTo('#formularioAdmin').load("../View/formularios/frmAltaUsuario.html");
+    } else {
+        $('.frmAltaUsuarioMostrar').css("display","block");
+    }
+}
+
+function cargarFrmSolicitudes(){
+    mostrarFormularios("frmLocalizacion","formularioAdmin");
+    
+    if ($('#frmLocalizacion').length == 0) {
+        $("<div class='frmLocalizacion'>").appendTo('#formularioAdmin').load("../View/formularios/frmLocalizacion.html");
+    } else {
+        $('.frmLocalizacion').css("display","block");
+    }
+}
+
+/*----------------------------------------------------------------*/

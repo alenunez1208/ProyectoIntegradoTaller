@@ -66,6 +66,10 @@
 	float: right;
 }
 
+.btnAltaUsu {
+	width: 100%;
+}
+
 #tituloCuestion {
 	border-bottom: 1px solid black;
 }
