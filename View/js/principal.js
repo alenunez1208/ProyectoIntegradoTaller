@@ -86,7 +86,17 @@ $("#presupuestosYPreguntasUsuario").click(function(){
     cargarFrmPreguntas(usuario);
 });
 
+$("#solicitudDeCitas").click(cargarFrmSolicitudDeCitas);
 
+function cargarFrmSolicitudDeCitas(){
+    mostrarFormularios("frmSolicitudDeCitasMostrar","formulario");
+    
+    if ($('#frmSolicitudDeCitasMostrar').length == 0) {
+        $("<div class='frmSolicitudDeCitasMostrar'>").appendTo('#formulario').load("../View/formularios/frmSolicitudDeCitas.html");
+    } else {
+        $('.frmSolicitudDeCitasMostrar').css("display","block");
+    }
+}
 /*----------------------------------------------------------------*/
 
 /*----------------------PANEL ADMINISTRADOR-----------------------*/
