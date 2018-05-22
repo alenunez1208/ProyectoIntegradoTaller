@@ -1,13 +1,28 @@
 <div id="frmSolicitudDeCitasMostrar">
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <br>
             <iframe src="https://calendar.google.com/calendar/embed?showTitle=0&amp;showPrint=0&amp;showCalendars=0&amp;showTz=0&amp;mode=WEEK&amp;height=400&amp;wkst=2&amp;hl=es&amp;bgcolor=%23ffffff&amp;src=carquintotaller%40gmail.com&amp;color=%231B887A&amp;ctz=Europe%2FMadrid"
                 style="border-width:0" width="100%" height="400" frameborder="0" scrolling="no"></iframe>
             <br>
             <br>
         </div>
-        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
             <form id="frmSolicitaCita" name="frmSolicitaCita">
+                <h3 id="tituloCuestion">Solicitud de cita</h3>
+                <br>
+                <div class="form-group">
+                    <label for="txtAsuntoCita">Asunto de cita
+                        <span class="asterisco">*</span>
+                    </label>
+                    <input type="text" class="form-control" name="txtAsuntoCita" id="txtAsuntoCita" placeholder="Asunto" required>
+                </div>
+                <div class="form-group">
+                    <label for="txtFecha">Fecha
+                        <span class="asterisco">*</span>
+                    </label>
+                    <input type="text" class="form-control" name="txtFecha" id="txtFecha" placeholder="Fecha de cita" required>
+                </div>
                 <div class="form-group">
                     <label for="comboHoras">Horas disponible:</label>
                     <select class="form-control" id="comboHoras">
@@ -17,7 +32,21 @@
                         <option>4</option>
                     </select>
                 </div>
+                <div class="form-group">
+                    <label for="txtMotivoCita">Motivo cita
+                        <span class="asterisco">*</span>
+                    </label>
+                    <textarea class="form-control" rows="5" id="txtMotivoCita" name="txtMotivoCita" placeholder="Introduzca el motivo de la cita" required></textarea>
+                </div>                
+                <div id="botonesForm1">
+                    <br>
+                        <button type="button" id="btnEnviarSolicitud" name="btnEnviarSolicitud" class="btn btn-primary">Enviar</button>
+                        <button type="reset" class="btn btn-danger">Limpiar Campos</button>
+                    </div>
             </form>
+        </div>
+        <div class="hidden-xs col-sm-6 col-md-6 col-lg-6">
+            <img src="../View/images/citaPrevia.png" id="fotoSolicitudCitas" alt="solicitud de citas">
         </div>
     </div>
 </div>
