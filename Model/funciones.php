@@ -7,7 +7,7 @@
                 $opc=array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8");
                 $dsn="mysql:host=localhost;dbname=carquinto";
                 $usuario="root";
-                $contrasena="root";
+                $contrasena="";
                 $base=new PDO($dsn,$usuario,$contrasena,$opc);
             } catch (PDOException $e) {
                 die ("Error".$e->getMessage());
