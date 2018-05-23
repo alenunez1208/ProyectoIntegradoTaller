@@ -36,12 +36,20 @@
 				<div class="collapse navbar-collapse" id="myNavbar">
 					<ul class="nav navbar-nav">
 						<li>
+							<a id="inicioAdmin" href="#">
+								<i class="glyphicon glyphicon-home"></i> Inicio</a>
+						</li>
+						<li>
 							<a id="altaUsuarios" href="#">
 								<i class="glyphicon glyphicon-plus-sign"></i> Alta Usuarios</a>
 						</li>
 						<li>
 							<a id="solicitudCitas" href="#">
-								<i class="glyphicon glyphicon-check"></i> Solicitudes Pendientes</a>
+								<i class="glyphicon glyphicon-check"></i> Solicitudes Pendientes
+								<span class="badge">
+									<?php echo $numeroCitasPendientes ?>
+								</span>
+							</a>
 						</li>
 						<li>
 							<a class="dropdown-toggle" id="listados" href="#" data-toggle="dropdown">

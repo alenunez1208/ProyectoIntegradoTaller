@@ -100,8 +100,20 @@ function cargarFrmSolicitudDeCitas(){
 /*----------------------------------------------------------------*/
 
 /*----------------------PANEL ADMINISTRADOR-----------------------*/
+cargarFrmIndexAdmin();
+$("#inicioAdmin").click(cargarFrmIndexAdmin)
 $("#altaUsuarios").click(cargarFrmAltaUsuario);
 $("#solicitudCitas").click(cargarFrmSolicitudes);
+
+function cargarFrmIndexAdmin(){
+    mostrarFormularios("frmIndexAdminMostrar","formularioAdmin");
+    
+    if ($('#frmIndexAdminMostrar').length == 0) {
+        $("<div class='frmIndexAdminMostrar'>").appendTo('#formularioAdmin').load("../View/formularios/frmIndexAdmin.html");
+    } else {
+        $('.frmIndexAdminMostrar').css("display","block");
+    }
+}
 
 function cargarFrmAltaUsuario(){
     mostrarFormularios("frmAltaUsuarioMostrar","formularioAdmin");
@@ -115,7 +127,7 @@ function cargarFrmAltaUsuario(){
 
 function cargarFrmSolicitudes(){
     mostrarFormularios("frmLocalizacion","formularioAdmin");
-    
+
     if ($('#frmLocalizacion').length == 0) {
         $("<div class='frmLocalizacion'>").appendTo('#formularioAdmin').load("../View/formularios/frmLocalizacion.html");
     } else {

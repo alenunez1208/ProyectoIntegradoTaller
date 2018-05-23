@@ -3,7 +3,7 @@
     $oDatos = json_decode($sDatos);
 	$respuesta= false;
 
-    $to_address = "nunezmontequinto2@gmail.com";
+    $to_address = "carquintotaller@gmail.com";
     $from_address = $oDatos->email;
     $subject = $oDatos->titulo;
     $message = $oDatos->mensaje;
