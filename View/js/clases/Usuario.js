@@ -5,5 +5,7 @@ class Usuario {
         this.emailUsuario= sEmail;
         this.passwordUsuario= sPassword;
         this.tlfUsuario= iTlf;
+        this.tipo= "usuario";
+        this.activo= true;
     }
 }

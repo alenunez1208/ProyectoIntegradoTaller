@@ -10,7 +10,7 @@
     width: 40%;
     height: 40%;
 }
-
+/*
 body {
 	background-image: url("../images/fondo1.jpg");
 	color: black;
@@ -18,10 +18,10 @@ body {
 
 #formulario {
 	background-color: white;
+	padding: 2%;
 }
-
+*/
 nav.navbar {
-	background-color: #FF804A;
 }
 /*-------------------------------------------------------------------*/
 

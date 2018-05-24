@@ -58,7 +58,7 @@ function cargarFrmPreguntas(usuario){
                     $("#txtTelefono").attr("readonly",true);
                 }
             } else{
-				bFormularioPreguntasCargado= true;
+                bFormularioPreguntasCargado= true;
                 $.getScript("../View/js/clases/Pregunta.js");
                 $.getScript("../View/js/gestionPregunta.js", function(){
                     var btnEnviarPregunta= document.getElementById("btnEnviarPregunta");
@@ -101,6 +101,7 @@ function cargarFrmSolicitudDeCitas(){
 
 /*----------------------PANEL ADMINISTRADOR-----------------------*/
 cargarFrmIndexAdmin();
+var bFrmAltaUsuarioCargado= false;
 $("#inicioAdmin").click(cargarFrmIndexAdmin)
 $("#altaUsuarios").click(cargarFrmAltaUsuario);
 $("#solicitudCitas").click(cargarFrmSolicitudes);
@@ -119,20 +120,32 @@ function cargarFrmAltaUsuario(){
     mostrarFormularios("frmAltaUsuarioMostrar","formularioAdmin");
     
     if ($('#frmAltaUsuarioMostrar').length == 0) {
-        $("<div class='frmAltaUsuarioMostrar'>").appendTo('#formularioAdmin').load("../View/formularios/frmAltaUsuario.html");
+        $("<div class='frmAltaUsuarioMostrar'>").appendTo('#formularioAdmin').load("../View/formularios/frmAltaUsuario.html", function(){
+            if(bFrmAltaUsuarioCargado){
+                var btnAltaUsuario= document.getElementById("btnAltaUsuario");
+                btnAltaUsuario.addEventListener("click", altaUsuario, false);
+            } else{
+                bFrmAltaUsuarioCargado= true;
+                $.getScript("../View/js/clases/Usuario.js");
+                $.getScript("../View/js/gestionUsuario.js", function(){
+                    var btnAltaUsuario= document.getElementById("btnAltaUsuario");
+                    btnAltaUsuario.addEventListener("click", altaUsuario, false);
+                });
+            }
+        });
     } else {
         $('.frmAltaUsuarioMostrar').css("display","block");
     }
 }
 
 function cargarFrmSolicitudes(){
-    mostrarFormularios("frmLocalizacion","formularioAdmin");
+    /*mostrarFormularios("frmLocalizacion","formularioAdmin");
 
     if ($('#frmLocalizacion').length == 0) {
         $("<div class='frmLocalizacion'>").appendTo('#formularioAdmin').load("../View/formularios/frmLocalizacion.html");
     } else {
         $('.frmLocalizacion').css("display","block");
-    }
+    }*/
 }
 
 /*----------------------------------------------------------------*/
