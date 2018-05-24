@@ -10,6 +10,19 @@
     width: 40%;
     height: 40%;
 }
+
+body {
+	background-image: url("../images/fondo1.jpg");
+	color: black;
+}
+
+#formulario {
+	background-color: white;
+}
+
+nav.navbar {
+	background-color: #FF804A;
+}
 /*-------------------------------------------------------------------*/
 
 /*--------------------------------LOGIN------------------------------*/
