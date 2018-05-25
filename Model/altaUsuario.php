@@ -9,7 +9,7 @@
     $row= $resultset1->rowCount();
 
     if($row<=0){
-        $sql= "INSERT INTO usuarios values('','".$oDatos->nombreUsuario."', '".$oDatos->apellidosUsuario."', '".$oDatos->emailUsuario."', '".$oDatos->passwordUsuario."', ".$oDatos->tlfUsuario.", 'usuario', true);";
+        $sql= "INSERT INTO usuarios(nombre,apellidos,email,password,telefono,tipo,activo) values('".$oDatos->nombreUsuario."', '".$oDatos->apellidosUsuario."', '".$oDatos->emailUsuario."', '".$oDatos->passwordUsuario."', ".$oDatos->tlfUsuario.", 'usuario', true);";
         $resultset2= miClase::ejecutaConsultaAccion($sql);
 
         if($resultset2){
