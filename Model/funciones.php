@@ -7,7 +7,7 @@
                 $opc=array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8");
                 $dsn="mysql:host=localhost;dbname=carquinto";
                 $usuario="root";
-                $contrasena="root";
+                $contrasena="";
                 $base=new PDO($dsn,$usuario,$contrasena,$opc);
             } catch (PDOException $e) {
                 die ("Error".$e->getMessage());
@@ -21,6 +21,16 @@
             $miconexion= self::connectDB();
     
             return $miconexion->query($sql);
+        }
+
+        function ejecutaConsultaArray($sql){
+            $datos=[];
+            $resultset= self::ejecutaConsulta($sql);
+            while($fila=$resultset->fetch(PDO::FETCH_ASSOC))            {
+                $datos[]=$fila;
+            }
+            
+            return $datos;
         }
 
         public static function ejecutaConsultaAccion($sql){

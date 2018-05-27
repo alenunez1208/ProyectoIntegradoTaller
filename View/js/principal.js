@@ -102,6 +102,7 @@ function cargarFrmSolicitudDeCitas(){
 /*----------------------PANEL ADMINISTRADOR-----------------------*/
 cargarFrmIndexAdmin();
 var bFrmAltaUsuarioCargado= false;
+var bFrmSolicitudesCargado= false;
 $("#inicioAdmin").click(cargarFrmIndexAdmin)
 $("#altaUsuarios").click(cargarFrmAltaUsuario);
 $("#solicitudCitas").click(cargarFrmSolicitudes);
@@ -139,13 +140,22 @@ function cargarFrmAltaUsuario(){
 }
 
 function cargarFrmSolicitudes(){
-    /*mostrarFormularios("frmLocalizacion","formularioAdmin");
-
-    if ($('#frmLocalizacion').length == 0) {
-        $("<div class='frmLocalizacion'>").appendTo('#formularioAdmin').load("../View/formularios/frmLocalizacion.html");
+    mostrarFormularios("frmSolicituesPendientesMostrar","formularioAdmin");
+    
+    if ($('#frmSolicituesPendientesMostrar').length == 0) {
+        $("<div class='frmSolicituesPendientesMostrar'>").appendTo('#formularioAdmin').load("../View/formularios/frmSolicitudesPendientes.html");
+        if(bFrmSolicitudesCargado){
+            var btnListarSolicitudes= document.getElementById("solicitudCitas");
+            btnListarSolicitudes.addEventListener("click", listadoSolicituesPendientes, false);
+        } else{
+            bFrmSolicitudesCargado= true;
+            $.getScript("../View/js/gestionListarSolicitudes.js", function(){
+                listadoSolicituesPendientes();
+            });
+        }
     } else {
-        $('.frmLocalizacion').css("display","block");
-    }*/
+        $('.frmSolicituesPendientesMostrar').css("display","block");
+    }
 }
 
 /*----------------------------------------------------------------*/
