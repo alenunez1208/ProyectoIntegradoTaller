@@ -21,7 +21,7 @@ $("#presupuestosYPreguntas").click(function(){
 });
 
 function mostrarFormularios(sForm,sForm2) {
-    $("#"+sForm2+" >div:not('."+sForm+"')").hide();	
+    $("#"+sForm2+" >div:not('."+sForm+"')").hide();
 }
 
 function cargarFrmIndex(){
@@ -103,9 +103,11 @@ function cargarFrmSolicitudDeCitas(){
 cargarFrmIndexAdmin();
 var bFrmAltaUsuarioCargado= false;
 var bFrmSolicitudesCargado= false;
+var bFrmListadoUsuarios= false;
 $("#inicioAdmin").click(cargarFrmIndexAdmin)
 $("#altaUsuarios").click(cargarFrmAltaUsuario);
 $("#solicitudCitas").click(cargarFrmSolicitudes);
+$("#listadoTodosUsuarios").click(cargarFrmListadoUsuarios);
 
 function cargarFrmIndexAdmin(){
     mostrarFormularios("frmIndexAdminMostrar","formularioAdmin");
@@ -145,8 +147,8 @@ function cargarFrmSolicitudes(){
     if ($('#frmSolicituesPendientesMostrar').length == 0) {
         $("<div class='frmSolicituesPendientesMostrar'>").appendTo('#formularioAdmin').load("../View/formularios/frmSolicitudesPendientes.html");
         if(bFrmSolicitudesCargado){
-            var btnListarSolicitudes= document.getElementById("solicitudCitas");
-            btnListarSolicitudes.addEventListener("click", listadoSolicituesPendientes, false);
+            listadoSolicituesPendientes();
+            console.log("entro");
         } else{
             bFrmSolicitudesCargado= true;
             $.getScript("../View/js/gestionListarSolicitudes.js", function(){
@@ -158,4 +160,22 @@ function cargarFrmSolicitudes(){
     }
 }
 
+function cargarFrmListadoUsuarios(){
+    mostrarFormularios("frmListadoUsuariosMostrar","formularioAdmin");
+    console.log($('#frmListadoUsuariosMostrar').length);
+    if ($('#frmListadoUsuariosMostrar').length == 0) {
+        $("<div class='frmListadoUsuariosMostrar'>").appendTo('#formularioAdmin').load("../View/formularios/frmListadoUsuarios.html");
+        if(bFrmListadoUsuarios==true){
+            listadoUsuarios();
+            console.log("entro");
+        } else{
+            bFrmListadoUsuarios= true;
+            $.getScript("../View/js/gestionListarUsuarios.js", function(){
+                listadoUsuarios();
+            });
+        }
+    } else {
+        $('.frmListadoUsuariosMostrar').css("display","block");
+    }
+}
 /*----------------------------------------------------------------*/
