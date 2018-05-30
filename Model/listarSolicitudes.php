@@ -1,6 +1,6 @@
 <?php
     require_once("funciones.php");
-    $sql= "SELECT * FROM vista_usuario_citas";
+    $sql= "SELECT apellidos,nombre,email,telefono,asunto,fecha,hora,motivo,id_cita FROM vista_usuario_citas WHERE estado='pendiente'";
 
     $datos= miClase::ejecutaConsultaArray($sql);
 
