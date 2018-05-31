@@ -62,10 +62,10 @@ function respuestaListadoCitasTotales()
 			
 			oFila=oTabla.insertRow(1);
 			oCelda=oFila.insertCell();
-			oTexto=document.createTextNode(oFilas[i].nombre);
+			oTexto=document.createTextNode(oFilas[i].apellidos);
 			oCelda.appendChild(oTexto);
 			oCelda=oFila.insertCell();
-			oTexto=document.createTextNode(oFilas[i].apellidos);
+			oTexto=document.createTextNode(oFilas[i].nombre);
 			oCelda.appendChild(oTexto);
 			oCelda=oFila.insertCell();
 			oTexto=document.createTextNode(oFilas[i].email);

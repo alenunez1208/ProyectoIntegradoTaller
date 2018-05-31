@@ -13,4 +13,4 @@ public static function connectDB() {
             return $base;
         }
 
-SELECT u.apellidos,u.nombre,u.email,u.telefono,c.asunto,c.fecha_esp,c.hora,c.motivo,c.estado FROM usuarios u, citas c, usuarios_citas us WHERE us.id_usuario=u.id AND us.id_cita=c.id
+SELECT u.id,u.apellidos,u.nombre,u.email,u.telefono,c.id,c.asunto,c.fecha_esp,c.hora,c.motivo,c.estado FROM usuarios u, citas c, usuarios_citas us WHERE us.id_usuario=u.id AND us.id_cita=c.id

@@ -23,9 +23,9 @@ $("#presupuestosYPreguntas").click(function () {
 function mostrarFormularios(sForm, sForm2, listado) {
     $("#" + sForm2 + " >div:not('." + sForm + "')").hide();
 
-    if(listado){
-        $("#TodosLosListados").show("normal");    
-    } else{
+    if (listado) {
+        $("#TodosLosListados").show("normal");
+    } else {
         $("#TodosLosListados").hide();
     }
 }
@@ -114,12 +114,19 @@ $("#listadoTodosUsuarios").click(cargarFrmListadoUsuarios);
 $("#listarTodasCitas").click(cargarFrmListadoCitas);
 
 function cargarFrmIndexAdmin() {
-    mostrarFormularios("frmIndexAdminMostrar", "formularioAdmin",false);
+    mostrarFormularios("frmIndexAdminMostrar", "formularioAdmin", false);
 
     if ($('#frmIndexAdminMostrar').length == 0) {
-        $("<div class='frmIndexAdminMostrar'>").appendTo('#formularioAdmin').load("../View/formularios/frmIndexAdmin.html");
+        $("<div class='frmIndexAdminMostrar'>").appendTo('#formularioAdmin').load("../View/formularios/frmIndexAdmin.html", function () {
+            $.getScript("../View/js/gestionListarCitasHoy.js", function () {
+                listadoDeCitasDeHoy();
+                contadorDeCitasPendientes();
+            });
+        });
     } else {
         $('.frmIndexAdminMostrar').css("display", "block");
+        listadoDeCitasDeHoy();
+        contadorDeCitasPendientes();
     }
 }
 
@@ -131,17 +138,20 @@ function cargarFrmAltaUsuario() {
             if (bFrmAltaUsuarioCargado) {
                 var btnAltaUsuario = document.getElementById("btnAltaUsuario");
                 btnAltaUsuario.addEventListener("click", altaUsuario, false);
+                contadorDeCitasPendientes();
             } else {
                 bFrmAltaUsuarioCargado = true;
                 $.getScript("../View/js/clases/Usuario.js");
                 $.getScript("../View/js/gestionUsuario.js", function () {
                     var btnAltaUsuario = document.getElementById("btnAltaUsuario");
                     btnAltaUsuario.addEventListener("click", altaUsuario, false);
+                    contadorDeCitasPendientes();
                 });
             }
         });
     } else {
         $('.frmAltaUsuarioMostrar').css("display", "block");
+        contadorDeCitasPendientes();
     }
 }
 
@@ -152,10 +162,12 @@ function cargarFrmSolicitudes() {
         $("<div class='frmSolicituesPendientesMostrar'>").appendTo('#formularioAdmin').load("../View/formularios/frmSolicitudesPendientes.html");
         $.getScript("../View/js/gestionListarSolicitudes.js", function () {
             listadoSolicituesPendientes();
+            contadorDeCitasPendientes();
         });
     } else {
         $('.frmSolicituesPendientesMostrar').css("display", "block");
         listadoSolicituesPendientes();
+        contadorDeCitasPendientes();
     }
 }
 
@@ -165,10 +177,12 @@ function cargarFrmListadoUsuarios() {
         $("<div class='frmListadoUsuariosMostrar'>").appendTo('#formularioAdmin').load("../View/formularios/frmListadoUsuarios.html");
         $.getScript("../View/js/gestionListarUsuarios.js", function () {
             listadoUsuarios();
+            contadorDeCitasPendientes();
         });
     } else {
         $('.frmListadoUsuariosMostrar').css("display", "block");
         listadoUsuarios();
+        contadorDeCitasPendientes();
     }
 }
 
@@ -178,10 +192,30 @@ function cargarFrmListadoCitas() {
         $("<div class='frmListadoCitasMostrar'>").appendTo('#formularioAdmin').load("../View/formularios/frmListadoCitas.html");
         $.getScript("../View/js/gestionListarCitas.js", function () {
             listadoCitasTotales();
+            contadorDeCitasPendientes();
         });
     } else {
         $('.frmListadoCitasMostrar').css("display", "block");
         listadoCitasTotales();
+        contadorDeCitasPendientes();
     }
+}
+
+var oCapa= document.getElementById("anadirContador");
+function contadorDeCitasPendientes(){
+	$.get("../Model/contadorCitasPendientes.php", function (sDatosDevuelto, sStatus, oAjax) {
+		if (sStatus == "success") {
+            mostrar= document.querySelector(".contadorCitasPendientes");
+            if (mostrar != null)
+                mostrar.remove();
+                
+            var span= document.createElement("span");
+            span.classList.add("contadorCitasPendientes");
+            console.log(mostrar);
+            console.log(sDatosDevuelto);
+            span.append(sDatosDevuelto);
+            oCapa.appendChild(span);
+		}
+	}, "text");
 }
 /*----------------------------------------------------------------*/
