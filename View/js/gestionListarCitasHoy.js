@@ -1,4 +1,4 @@
-var oCapaListado = document.getElementById("listadoCitasHoy");
+var oCapaList = document.getElementById("listadoCitasHoy");
 
 function listadoDeCitasDeHoy() {
     // Instanciar objeto Ajax
@@ -42,6 +42,6 @@ function respuestaListadoCitasHoy(){
             oLista.appendChild(oFila);
         }
         
-		oCapaListado.appendChild(oLista);
+		oCapaList.appendChild(oLista);
     }
 }

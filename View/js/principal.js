@@ -97,7 +97,9 @@ function cargarFrmSolicitudDeCitas() {
     mostrarFormularios("frmSolicitudDeCitasMostrar", "formulario", false);
 
     if ($('#frmSolicitudDeCitasMostrar').length == 0) {
-        $("<div class='frmSolicitudDeCitasMostrar'>").appendTo('#formulario').load("../View/formularios/frmSolicitudDeCitas.html");
+        $("<div class='frmSolicitudDeCitasMostrar'>").appendTo('#formulario').load("../View/formularios/frmSolicitudDeCitas.html", function(){
+            $.getScript("../View/js/gestionPedirCita.js");
+        });
     } else {
         $('.frmSolicitudDeCitasMostrar').css("display", "block");
     }
@@ -211,8 +213,6 @@ function contadorDeCitasPendientes(){
                 
             var span= document.createElement("span");
             span.classList.add("contadorCitasPendientes");
-            console.log(mostrar);
-            console.log(sDatosDevuelto);
             span.append(sDatosDevuelto);
             oCapa.appendChild(span);
 		}

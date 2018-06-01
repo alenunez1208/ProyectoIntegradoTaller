@@ -95,7 +95,8 @@ function respuestaListadoSolicitudesPendientes() {
 
 function aceptarCita(idCita, bEstado) {
 		$.post("../Model/cambiarEstadoCita.php","iIdCita="+idCita+"&estado="+bEstado, function (sDatosDevuelto, sStatus, oAjax) {
-			if (sStatus == "success" && sDatosDevuelto == "Exito") {
+			if (sStatus == "success" && sDatosDevuelto == "Exito") {				
+				contadorDeCitasPendientes();
 				listadoSolicituesPendientes();
 			}
 		}, "text");
