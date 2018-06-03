@@ -17,13 +17,15 @@
 
     if (isset($_SESSION['username']) && isset($_SESSION['password']) && $_SESSION['cerrarSesion'] == false) {
         $usuario = miClase::obtieneUsuario($_SESSION['username'],$_SESSION['password']);
+        $idUser= $usuario->getId();  
         $nombreUser= $usuario->getNombre();
         $emailUser= "";
-        $tlfUser= "";           
+        $tlfUser= "";                 
     
-        if ($usuario->getTipo()=="usuario") {
+        if ($usuario->getTipo()=="usuario") { 
             $emailUser= $usuario->getEmail();
-            $tlfUser= $usuario->getTelefono();  
+            $tlfUser= $usuario->getTelefono(); 
+
             require_once "../View/panelUsuario.html";
         } else if ($usuario->getTipo()=="admin"){
             $numeroCitasPendientes= miClase::obtenerNumeroDeCitasPorConcretar();

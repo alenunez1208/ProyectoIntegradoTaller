@@ -60,7 +60,8 @@ function cargarFrmPreguntas(usuario) {
                 btnEnviarPregunta.addEventListener("click", enviarPregunta, false);
                 if (usuario == "si") {
                     $("#txtEmail").attr("readonly", true);
-                    $("#txtTelefono").attr("readonly", true);
+                    $("#txtTelefono").attr("readonly", true);+
+                    rellenaCamposUsuario();
                 }
             } else {
                 bFormularioPreguntasCargado = true;
@@ -71,12 +72,14 @@ function cargarFrmPreguntas(usuario) {
                     if (usuario == "si") {
                         $("#txtEmail").attr("readonly", true);
                         $("#txtTelefono").attr("readonly", true);
+                        rellenaCamposUsuario();
                     }
                 });
             }
         });
     } else {
         $('.frmPreguntasMostrar').css("display", "block");
+        rellenaCamposUsuario();
     }
 }
 

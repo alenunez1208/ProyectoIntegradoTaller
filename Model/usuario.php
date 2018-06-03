@@ -1,5 +1,6 @@
 <?php
     class Usuario{
+        protected $id;
         protected $nombre;
         protected $apellidos;
         protected $email;
@@ -8,12 +9,17 @@
         protected $tipo;
 
         public function __construct($row){
+            $this->id= $row["id"];
             $this->nombre= $row["nombre"];
             $this->apellidos= $row["apellidos"];
             $this->email= $row["email"];
             $this->password= $row["password"];
             $this->telefono= $row["telefono"];
             $this->tipo= $row["tipo"];
+        }
+
+        public function getId(){
+            return $this->id;
         }
 
         public function getNombre(){

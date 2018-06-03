@@ -24,5 +24,8 @@ function respuestaPregunta(oDatosDevuelto, sStatus, oAjax){
 }
 
 function rellenaCamposUsuario(){
-    
+    var rellenaEmail= document.getElementById("txtEmailUsuario").value.trim();
+    var rellenaTlf= document.getElementById("txtTlfUsuario").value.trim();
+    $("#txtEmail").val(rellenaEmail);
+    $("#txtTelefono").val(rellenaTlf);
 }
