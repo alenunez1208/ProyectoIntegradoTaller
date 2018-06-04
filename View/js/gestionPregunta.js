@@ -20,7 +20,6 @@ function respuestaPregunta(oDatosDevuelto, sStatus, oAjax){
 		} else {
 			alert("Problemas en el envío del correo");
 		}
-	
 }
 
 function rellenaCamposUsuario(){

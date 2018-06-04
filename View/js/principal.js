@@ -101,7 +101,11 @@ function cargarFrmSolicitudDeCitas() {
 
     if ($('#frmSolicitudDeCitasMostrar').length == 0) {
         $("<div class='frmSolicitudDeCitasMostrar'>").appendTo('#formulario').load("../View/formularios/frmSolicitudDeCitas.html", function(){
-            $.getScript("../View/js/gestionPedirCita.js");
+            $.getScript("../View/js/clases/Cita.js");
+            $.getScript("../View/js/gestionPedirCita.js",function(){
+                var btnEnviarSolicitud = document.getElementById("btnEnviarSolicitud");
+                btnEnviarSolicitud.addEventListener("click", solicitarUnaCita, false);
+            });
         });
     } else {
         $('.frmSolicitudDeCitasMostrar').css("display", "block");

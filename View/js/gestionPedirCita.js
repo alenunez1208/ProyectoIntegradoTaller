@@ -30,7 +30,6 @@ var oComboHoras = document.getElementById("comboHoras");
 function cargarComboHoras(dFecha){
     $.get("../Model/cargarComboHoras.php","fecha="+dFecha, function (sDatosDevuelto, sStatus, oAjax) {
         if (sStatus == "success") {
-            console.log(sDatosDevuelto);
             var oFilas = JSON.parse(sDatosDevuelto);            
             oCombo= document.getElementById("comboHoras");
             oCombo.innerHTML="";
@@ -43,4 +42,29 @@ function cargarComboHoras(dFecha){
             }
         }
     }, "text");
+}
+
+function solicitarUnaCita(oEvento){
+    var oE= oEvento || windows.event;
+    var oForm= document.getElementById("frmSolicitaCita");
+
+    var asunto= oForm.txtAsuntoCita.value.trim();
+    var fecha= oForm.txtFecha.value.trim();
+    var hora= oForm.comboHoras.options[comboHoras.selectedIndex].value.trim();
+    var descripcion= oForm.txtMotivoCita.value.trim();
+    var idUsu= document.getElementById("txtIdUsuario").value.trim();
+
+    var oCita= new Cita(idUsu,asunto,fecha,hora,descripcion);
+    var datos= "datos="+JSON.stringify(oCita);
+
+    $.post("../Model/pedirCita.php",datos,respuestaPedirCita,"json");
+}
+
+function respuestaPedirCita(oDatosDevuelto, sStatus, oAjax){
+    if (oDatosDevuelto == true){
+        alert("Cita Solicitada");
+        document.frmPresupuesto.reset();
+    } else {
+        alert("Problemas al solicitar cita");
+    }
 }
