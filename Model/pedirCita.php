@@ -4,7 +4,7 @@
     $sDatos = $_REQUEST["datos"];
     $oDatos = json_decode($sDatos);
 
-    $sql= "INSERT INTO citas(asunto,fecha,fecha_esp,hora,motivo,estado) values('".$oDatos->asunto."', '".$oDatos->fecha."', '".$oDatos->fechaEsp."', '".$oDatos->hora."', '".$oDatos->descripcion."', '".$oDatos->estado."');";
+    $sql= "INSERT INTO citas(asunto,fecha,fecha_esp,hora,motivo,estado) values('".$oDatos->asunto."', ".$oDatos->fecha.", '".$oDatos->fechaEsp."', '".$oDatos->hora."', '".$oDatos->descripcion."', '".$oDatos->estado."');";
     $resultset= miClase::ejecutaConsultaAccion($sql);
     
     if($resultset){

@@ -5,16 +5,17 @@ function listadoDeCitasDeHoy() {
     var oAjax = instanciarXHR();
 
     //1. Preparar parametros
-    //var sDatosEnvio;
+    var fecha= new Date();
+    var fechaConver= fecha.toLocaleDateString("es-ES");
 
     //2. Configurar la llamada --> Asincrono por defecto
-    oAjax.open("GET", "../Model/listarCitasHoy.php");
+    oAjax.open("GET","../Model/listarCitasHoy.php");
 
     //3. Asociar manejador de evento de la respuesta
     oAjax.addEventListener("readystatechange", respuestaListadoCitasHoy, false);
 
     //4. Hacer la llamada
-    oAjax.send();
+    oAjax.send("datos="+fechaConver);
 }
 
 function respuestaListadoCitasHoy(){
