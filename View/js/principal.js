@@ -95,6 +95,10 @@ $("#presupuestosYPreguntasUsuario").click(function () {
 });
 
 $("#solicitudDeCitas").click(cargarFrmSolicitudDeCitas);
+$("#enlaceEditarUsuario").click(function(){
+    var usuario= "usuario";
+    cargarFrmEditarUsuario(usuario);
+});
 
 function cargarFrmSolicitudDeCitas() {
     mostrarFormularios("frmSolicitudDeCitasMostrar", "formulario", false);
@@ -111,6 +115,38 @@ function cargarFrmSolicitudDeCitas() {
         $('.frmSolicitudDeCitasMostrar').css("display", "block");
     }
 }
+
+function cargarFrmEditarUsuario(tipo){
+    if(tipo=="usuario"){
+        mostrarFormularios("frmEditarUsuarioMostrar", "formulario", false);
+
+        if ($('#frmEditarUsuarioMostrar').length == 0) {
+            $("<div class='frmEditarUsuarioMostrar'>").appendTo('#formulario').load("../View/formularios/frmEditarUsuario.html", function () {
+                $.getScript("../View/js/gestionEditarUsuario.js", function () {
+                    rellenarCamposEditarUsuario();
+                });
+            });
+        } else {
+            $('.frmEditarUsuarioMostrar').css("display", "block");
+            rellenarCamposEditarUsuario();
+        }
+    } else{
+        mostrarFormularios("frmEditarUsuarioMostrar", "formularioAdmin", false);
+
+        if ($('#frmEditarUsuarioMostrar').length == 0) {
+            $("<div class='frmEditarUsuarioMostrar'>").appendTo('#formularioAdmin').load("../View/formularios/frmEditarUsuario.html", function () {
+                $.getScript("../View/js/gestionEditarUsuario.js", function () {
+                    contadorDeCitasPendientes();
+                    rellenarCamposEditarUsuario();
+                });
+            });
+        } else {
+            $('.frmEditarUsuarioMostrar').css("display", "block");
+            contadorDeCitasPendientes();
+            rellenarCamposEditarUsuario();
+        }
+    }
+}
 /*----------------------------------------------------------------*/
 
 /*----------------------PANEL ADMINISTRADOR-----------------------*/
@@ -121,6 +157,10 @@ $("#altaUsuarios").click(cargarFrmAltaUsuario);
 $("#solicitudCitas").click(cargarFrmSolicitudes);
 $("#listadoTodosUsuarios").click(cargarFrmListadoUsuarios);
 $("#listarTodasCitas").click(cargarFrmListadoCitas);
+$("#enlaceEditarUsuarioAdm").click(function(){
+    var admin= "admin";
+    cargarFrmEditarUsuario(admin);
+});
 
 function cargarFrmIndexAdmin() {
     mostrarFormularios("frmIndexAdminMostrar", "formularioAdmin", false);

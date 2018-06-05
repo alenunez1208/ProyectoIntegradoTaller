@@ -14,9 +14,9 @@
     $headers[] = 'From: ' . $from_address;
     
     $success = mail($to_address, $subject, $message,  join("\r\n",$headers));
+    
     if ($success) {
-		echo json_encode(true);
-        
+		echo json_encode(true);        
     } else {
         echo json_encode(false);
     }	

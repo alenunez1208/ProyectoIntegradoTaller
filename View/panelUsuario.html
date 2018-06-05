@@ -56,7 +56,7 @@
 							</a>
 							<ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
 								<li role="presentation">
-									<a role="menuitem" tabindex="-1" href="#">Editar Perfil <i class="glyphicon glyphicon-pencil"></i></a>
+									<a role="menuitem" id="enlaceEditarUsuario" tabindex="-1" href="#">Editar Perfil <i class="glyphicon glyphicon-pencil"></i></a>
 								</li>
 								<li role="presentation">
 									<a role="menuitem" id="enlaceCerrarSesion" tabindex="-1" href="#">Cerrar Sesión <i class="glyphicon glyphicon-log-out"></i></a>
@@ -74,6 +74,9 @@
 		<input type="hidden" name="txtIdUsuario" id="txtIdUsuario" value="<?php echo $idUser; ?>">
 		<input type="hidden" name="txtEmailUsuario" id="txtEmailUsuario" value="<?php echo $emailUser; ?>">
 		<input type="hidden" name="txtTlfUsuario" id="txtTlfUsuario" value="<?php echo $tlfUser; ?>">
+		<input type="hidden" name="txtNombreUsuario" id="txtNombreUsuario" value="<?php echo $nombreUser; ?>">
+		<input type="hidden" name="txtApellidosUsuario" id="txtApellidosUsuario" value="<?php echo $surnameUser; ?>">
+		<input type="hidden" name="txtPasswordUsuario" id="txtPasswordUsuario" value="<?php echo $passUser; ?>">
 
 		<div id="formulario"></div>
 
