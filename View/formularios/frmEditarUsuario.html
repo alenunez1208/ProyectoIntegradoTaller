@@ -1,6 +1,7 @@
 <div id="frmEditarUsuarioMostrar">
     <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="hidden-xs hidden-sm col-md-1 col-lg-1"></div>
+        <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10">
             <h2 id="tituloLoc">Editar Perfil</h2>
             <br>
             <form id="frmEditarUsuario" name="frmEditarUsuario">
@@ -8,39 +9,51 @@
                     <label for="txtNombreEditar">Nombre
                         <span class="asterisco">*</span>
                     </label>
-                    <input type="text" class="form-control" name="txtNombreEditar" id="txtNombreEditar" placeholder="Nombre cliente" required>
+                    <input type="text" class="form-control" name="txtNombreEditar" id="txtNombreEditar" placeholder="Nombre" required>
                 </div>
                 <div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-6">
                     <label for="txtApellidosEditar">Apellidos
                         <span class="asterisco">*</span>
                     </label>
-                    <input type="text" class="form-control" name="txtApellidosEditar" id="txtApellidosEditar" placeholder="Nombre cliente" required>
+                    <input type="text" class="form-control" name="txtApellidosEditar" id="txtApellidosEditar" placeholder="Apellidos" required>
                 </div>
                 <div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-6">
                     <label for="txtEmailEditar">Email
                         <span class="asterisco">*</span>
                     </label>
-                    <input type="text" class="form-control" name="txtEmailEditar" id="txtEmailEditar" placeholder="Nombre cliente" required>
-                </div>
-                <div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                    <label for="txtPassEditar">Contraseña
-                        <span class="asterisco">*</span>
-                    </label>
-                    <input type="text" class="form-control" name="txtPassEditar" id="txtPassEditar" placeholder="Nombre cliente" required>
+                    <input type="text" class="form-control" name="txtEmailEditar" id="txtEmailEditar" placeholder="Email" required>
                 </div>
                 <div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-6">
                     <label for="txtTlfEditar">Teléfono
                         <span class="asterisco">*</span>
                     </label>
-                    <input type="text" class="form-control" name="txtTlfEditar" id="txtTlfEditar" placeholder="Nombre cliente" required>
+                    <input type="text" class="form-control" name="txtTlfEditar" id="txtTlfEditar" placeholder="Teléfono" required>
                 </div>
+                <div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                    <label for="txtPassEditar">Contraseña
+                        <span class="asterisco">*</span>
+                    </label>
+                    <input type="password" class="form-control" name="txtPassEditar" id="txtPassEditar" placeholder="Contraseña" required>
+                </div>
+                <div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                    <label for="txtPassConfirmarEditar">Confirmar Contraseña
+                        <span class="asterisco">*</span>
+                    </label>
+                    <input type="password" class="form-control" name="txtPassConfirmarEditar" id="txtPassConfirmarEditar" placeholder="Contraseña" required>
+                    <br>
+                    <br>
+                </div>
+
+                <div class="hidden-xs col-sm-2 col-md-3 col-lg-3"></div>
                 <div class="form-group col-xs-12 col-sm-4 col-md-3 col-lg-3">
-                    <input type="button" id="btnEditarUsuario" name="btnEditarUsuario" class="btnAltaUsu btn btn-primary" value="Guardar Cambios" />
+                    <input type="button" id="btnEditarUsuario" name="btnEditarUsuario" class="btnAltaUsu btn btn-primary" value="Guardar Cambios"/>
                 </div>
                 <div class="form-group col-xs-12 col-sm-4 col-md-3 col-lg-3">
                     <input type="reset" class="btn btn-danger btnAltaUsu" value="Limpiar Campos" />
                 </div>
+                <div class="hidden-xs col-sm-2 col-md-3 col-lg-3"></div>
             </form>
         </div>
+        <div class="hidden-xs hidden-sm col-md-1 col-lg-1"></div>
     </div>
 </div>

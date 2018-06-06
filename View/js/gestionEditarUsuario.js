@@ -8,5 +8,6 @@ function rellenarCamposEditarUsuario(){
     $("#txtApellidosEditar").val(txtApellidosEditar);
     $("#txtEmailEditar").val(txtEmailEditar);
     $("#txtPassEditar").val(txtPassEditar);
+    $("#txtPassConfirmarEditar").val(txtPassEditar);
     $("#txtTlfEditar").val(txtTlfEditar);
 }
