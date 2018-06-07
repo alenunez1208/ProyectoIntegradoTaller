@@ -1,5 +1,6 @@
 <?php
     require_once("funciones.php");
+    require_once("cita.php");
 
     $sDatos = $_REQUEST["datos"];
     $oDatos = json_decode($sDatos);
@@ -8,14 +9,19 @@
     $resultset= miClase::ejecutaConsultaAccion($sql);
     
     if($resultset>0){
-        echo "HOLA";
-        $sql2= "SELECT id FROM citas WHERE fecha='$oDatos->fecha' AND hora='$oDatos->hora'";
+        $sql2= "SELECT id FROM citas WHERE fecha_esp='$oDatos->fechaEsp' AND hora='$oDatos->hora'";
         $idCita= miClase::ejecutaConsulta($sql2);
 
-        if($idCita>0){
-            $sql3= "INSERT INTO usuario_citas(id_usuario,id_cita) values($oDatos->idUsuario, 2);";
-            $resultset3= miClase::ejecutaConsultaAccion($sql3);
-            echo json_encode(true);
+        if($idCita){
+            while($row= $idCita->fetch(PDO::FETCH_ASSOC)){
+                $cita= new Cita($row);
+            }           
+
+            foreach($cita as $citaId){                
+                $sql3= "INSERT INTO usuarios_citas(id_usuario,id_cita) values($oDatos->idUsuario, ".$citaId['id'].")";
+                $resultset3= miClase::ejecutaConsultaAccion($sql3);
+                echo json_encode(true);
+            }
         } else{            
             echo json_encode(false);
         }   
