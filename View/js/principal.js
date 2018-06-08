@@ -66,7 +66,7 @@ function cargarFrmPreguntas(usuario) {
             } else {
                 bFormularioPreguntasCargado = true;
                 $.getScript("../View/js/clases/Pregunta.js");
-                $.getScript("../View/js/gestionPregunta.js", function () {
+                $.getScript("../View/js/gestiones/gestionPregunta.js", function () {
                     var btnEnviarPregunta = document.getElementById("btnEnviarPregunta");
                     btnEnviarPregunta.addEventListener("click", enviarPregunta, false);
                     if (usuario == "si") {
@@ -88,12 +88,10 @@ function cargarFrmPreguntas(usuario) {
 $("#enlaceCerrarSesion").click(function () {
     $("#cerrarSesion").submit();
 });
-
 $("#presupuestosYPreguntasUsuario").click(function () {
     usuario = "si";
     cargarFrmPreguntas(usuario);
 });
-
 $("#solicitudDeCitas").click(cargarFrmSolicitudDeCitas);
 $("#enlaceEditarUsuario").click(function(){
     var usuario= "usuario";
@@ -106,7 +104,7 @@ function cargarFrmSolicitudDeCitas() {
     if ($('#frmSolicitudDeCitasMostrar').length == 0) {
         $("<div class='frmSolicitudDeCitasMostrar'>").appendTo('#formulario').load("../View/formularios/frmSolicitudDeCitas.html", function(){
             $.getScript("../View/js/clases/Cita.js");
-            $.getScript("../View/js/gestionPedirCita.js",function(){
+            $.getScript("../View/js/gestiones/gestionPedirCita.js",function(){
                 var btnEnviarSolicitud = document.getElementById("btnEnviarSolicitud");
                 btnEnviarSolicitud.addEventListener("click", solicitarUnaCita, false);
             });
@@ -122,8 +120,10 @@ function cargarFrmEditarUsuario(tipo){
 
         if ($('#frmEditarUsuarioMostrar').length == 0) {
             $("<div class='frmEditarUsuarioMostrar'>").appendTo('#formulario').load("../View/formularios/frmEditarUsuario.html", function () {
-                $.getScript("../View/js/gestionEditarUsuario.js", function () {
+                $.getScript("../View/js/gestiones/gestionEditarUsuario.js", function () {
                     rellenarCamposEditarUsuario();
+                    var btnEditarUsuario = document.getElementById("btnEditarUsuario");
+                    btnEditarUsuario.addEventListener("click", modificarDatosPersonales, false);
                 });
             });
         } else {
@@ -135,7 +135,7 @@ function cargarFrmEditarUsuario(tipo){
 
         if ($('#frmEditarUsuarioMostrar').length == 0) {
             $("<div class='frmEditarUsuarioMostrar'>").appendTo('#formularioAdmin').load("../View/formularios/frmEditarUsuario.html", function () {
-                $.getScript("../View/js/gestionEditarUsuario.js", function () {
+                $.getScript("../View/js/gestiones/gestionEditarUsuario.js", function () {
                     contadorDeCitasPendientes();
                     rellenarCamposEditarUsuario();
                 });
@@ -147,6 +147,8 @@ function cargarFrmEditarUsuario(tipo){
         }
     }
 }
+
+
 /*----------------------------------------------------------------*/
 
 /*----------------------PANEL ADMINISTRADOR-----------------------*/
@@ -167,7 +169,7 @@ function cargarFrmIndexAdmin() {
 
     if ($('#frmIndexAdminMostrar').length == 0) {
         $("<div class='frmIndexAdminMostrar'>").appendTo('#formularioAdmin').load("../View/formularios/frmIndexAdmin.html", function () {
-            $.getScript("../View/js/gestionListarCitasHoy.js", function () {
+            $.getScript("../View/js/gestiones/gestionListarCitasHoy.js", function () {
                 listadoDeCitasDeHoy();
                 contadorDeCitasPendientes();
             });
@@ -191,7 +193,7 @@ function cargarFrmAltaUsuario() {
             } else {
                 bFrmAltaUsuarioCargado = true;
                 $.getScript("../View/js/clases/Usuario.js");
-                $.getScript("../View/js/gestionUsuario.js", function () {
+                $.getScript("../View/js/gestiones/gestionUsuario.js", function () {
                     var btnAltaUsuario = document.getElementById("btnAltaUsuario");
                     btnAltaUsuario.addEventListener("click", altaUsuario, false);
                     contadorDeCitasPendientes();
@@ -209,7 +211,7 @@ function cargarFrmSolicitudes() {
 
     if ($('#frmSolicituesPendientesMostrar').length == 0) {
         $("<div class='frmSolicituesPendientesMostrar'>").appendTo('#formularioAdmin').load("../View/formularios/frmSolicitudesPendientes.html");
-        $.getScript("../View/js/gestionListarSolicitudes.js", function () {
+        $.getScript("../View/js/gestiones/gestionListarSolicitudes.js", function () {
             listadoSolicituesPendientes();
             contadorDeCitasPendientes();
         });
@@ -224,7 +226,7 @@ function cargarFrmListadoUsuarios() {
     mostrarFormularios("frmListadoUsuariosMostrar", "formularioAdmin", true);
     if ($('#frmListadoUsuariosMostrar').length == 0) {
         $("<div class='frmListadoUsuariosMostrar'>").appendTo('#formularioAdmin').load("../View/formularios/frmListadoUsuarios.html");
-        $.getScript("../View/js/gestionListarUsuarios.js", function () {
+        $.getScript("../View/js/gestiones/gestionListarUsuarios.js", function () {
             listadoUsuarios();
             contadorDeCitasPendientes();
         });
@@ -239,7 +241,7 @@ function cargarFrmListadoCitas() {
     mostrarFormularios("frmListadoCitasMostrar", "formularioAdmin", true);
     if ($('#frmListadoCitasMostrar').length == 0) {
         $("<div class='frmListadoCitasMostrar'>").appendTo('#formularioAdmin').load("../View/formularios/frmListadoCitas.html");
-        $.getScript("../View/js/gestionListarCitas.js", function () {
+        $.getScript("../View/js/gestiones/gestionListarCitas.js", function () {
             listadoCitasTotales();
             contadorDeCitasPendientes();
         });

@@ -13,11 +13,7 @@
         $idCita= miClase::ejecutaConsulta($sql2);
 
         if($idCita){
-            while($row= $idCita->fetch(PDO::FETCH_ASSOC)){
-                $cita= new Cita($row);
-            }           
-
-            foreach($cita as $citaId){                
+            foreach($idCita as $citaId){                
                 $sql3= "INSERT INTO usuarios_citas(id_usuario,id_cita) values($oDatos->idUsuario, ".$citaId['id'].")";
                 $resultset3= miClase::ejecutaConsultaAccion($sql3);
                 echo json_encode(true);
