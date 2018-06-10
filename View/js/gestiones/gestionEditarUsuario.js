@@ -33,8 +33,10 @@ function respuestaPregunta(oDatosDevuelto, sStatus, oAjax) {
     if (oDatosDevuelto == true) {
         alert("Usuario modificado correctamente");
         document.frmEditarUsuario.reset();
+        rellenarCamposEditarUsuario();
     }else {
         alert("Problemas al modificar usuario");
+        rellenarCamposEditarUsuario();
     }
 
 }

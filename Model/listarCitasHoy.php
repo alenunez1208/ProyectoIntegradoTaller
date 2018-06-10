@@ -2,7 +2,7 @@
     require_once("funciones.php");
     $fecha= $_GET["datos"];
     
-    $sql= "SELECT apellidos, nombre, hora, asunto FROM vista_usuario_citas WHERE fecha='$fecha' AND estado='aceptada' ORDER BY fecha_original desc";
+    $sql= "SELECT apellidos, nombre, hora, asunto FROM vista_usuario_citas WHERE fecha_ori='$fecha' AND estado='aceptada'";
 
     $datos= miClase::ejecutaConsultaArray($sql);
 

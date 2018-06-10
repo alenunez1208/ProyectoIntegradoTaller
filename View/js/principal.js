@@ -120,6 +120,7 @@ function cargarFrmEditarUsuario(tipo){
 
         if ($('#frmEditarUsuarioMostrar').length == 0) {
             $("<div class='frmEditarUsuarioMostrar'>").appendTo('#formulario').load("../View/formularios/frmEditarUsuario.html", function () {
+                $.getScript("../View/js/clases/Usuario.js");
                 $.getScript("../View/js/gestiones/gestionEditarUsuario.js", function () {
                     rellenarCamposEditarUsuario();
                     var btnEditarUsuario = document.getElementById("btnEditarUsuario");
@@ -138,6 +139,8 @@ function cargarFrmEditarUsuario(tipo){
                 $.getScript("../View/js/gestiones/gestionEditarUsuario.js", function () {
                     contadorDeCitasPendientes();
                     rellenarCamposEditarUsuario();
+                    var btnEditarUsuario = document.getElementById("btnEditarUsuario");
+                    btnEditarUsuario.addEventListener("click", modificarDatosPersonales, false);
                 });
             });
         } else {
@@ -169,6 +172,7 @@ function cargarFrmIndexAdmin() {
 
     if ($('#frmIndexAdminMostrar').length == 0) {
         $("<div class='frmIndexAdminMostrar'>").appendTo('#formularioAdmin').load("../View/formularios/frmIndexAdmin.html", function () {
+            $.getScript("../View/js/clases/Usuario.js");
             $.getScript("../View/js/gestiones/gestionListarCitasHoy.js", function () {
                 listadoDeCitasDeHoy();
                 contadorDeCitasPendientes();
@@ -192,7 +196,6 @@ function cargarFrmAltaUsuario() {
                 contadorDeCitasPendientes();
             } else {
                 bFrmAltaUsuarioCargado = true;
-                $.getScript("../View/js/clases/Usuario.js");
                 $.getScript("../View/js/gestiones/gestionUsuario.js", function () {
                     var btnAltaUsuario = document.getElementById("btnAltaUsuario");
                     btnAltaUsuario.addEventListener("click", altaUsuario, false);
