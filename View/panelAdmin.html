@@ -44,6 +44,10 @@
 								<i class="glyphicon glyphicon-plus-sign"></i> Alta Usuarios</a>
 						</li>
 						<li>
+							<a id="altaCitasFisicas" href="#">
+								<i class="glyphicon glyphicon-copy"></i> Alta Citas</a>
+						</li>
+						<li>
 							<a id="solicitudCitas" href="#">
 								<i class="glyphicon glyphicon-check"></i> Solicitudes Pendientes
 								<span id="anadirContador" class="badge"><span class="contadorCitasPendientes"></span></span>
@@ -70,6 +74,11 @@
 								<?php echo $nombreUser ?>
 							</a>
 							<ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+								<li role="presentation">
+									<a role="menuitem" id="enlaceAdmCuentas" tabindex="-1" href="#">Administración de cuentas
+										<i class="glyphicon glyphicon-cog"></i>
+									</a>
+								</li>
 								<li role="presentation">
 									<a role="menuitem" id="enlaceEditarUsuarioAdm" tabindex="-1" href="#">Editar Perfil
 										<i class="glyphicon glyphicon-pencil"></i>

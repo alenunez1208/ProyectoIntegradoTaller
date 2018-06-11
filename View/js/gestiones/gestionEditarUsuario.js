@@ -1,15 +1,13 @@
 function rellenarCamposEditarUsuario(){
-    var txtNombreEditar= document.getElementById("txtNombreUsuario").value.trim();
-    var txtApellidosEditar= document.getElementById("txtApellidosUsuario").value.trim();
-    var txtEmailEditar= document.getElementById("txtEmailUsuario").value.trim();
-    var txtPassEditar= document.getElementById("txtPasswordUsuario").value.trim();
-    var txtTlfEditar= document.getElementById("txtTlfUsuario").value.trim();
-    $("#txtNombreEditar").val(txtNombreEditar);
-    $("#txtApellidosEditar").val(txtApellidosEditar);
-    $("#txtEmailEditar").val(txtEmailEditar);
-    $("#txtPassEditar").val(txtPassEditar);
-    $("#txtPassConfirmarEditar").val(txtPassEditar);
-    $("#txtTlfEditar").val(txtTlfEditar);
+    var idUsuarioEditar= document.getElementById("txtIdUsuario").value.trim();
+    var oUsuario= buscarUsuario(idUsuarioEditar);
+
+    $("#txtNombreEditar").val(oUsuario.nombreUsuario);
+    $("#txtApellidosEditar").val(oUsuario.apellidosUsuario);
+    $("#txtEmailEditar").val(oUsuario.emailUsuario);
+    $("#txtPassEditar").val(oUsuario.passwordUsuario);
+    $("#txtPassConfirmarEditar").val(oUsuario.passwordUsuario);
+    $("#txtTlfEditar").val(oUsuario.tlfUsuario);
 }
 
 function modificarDatosPersonales(oEvento){
@@ -39,4 +37,26 @@ function respuestaPregunta(oDatosDevuelto, sStatus, oAjax) {
         rellenarCamposEditarUsuario();
     }
 
+}
+
+function buscarUsuario(idUsuario){
+    var oUsuario= null;
+    var sDatos= "id="+idUsuario;
+    
+    $.ajax({
+        url :"../Model/buscarUsuario.php",
+        async : false,
+        cache : false, 
+        method : "GET", 
+        dataType : "json",
+        data : sDatos,
+        complete : function(oDatosDevuelto, sStatus){
+            if(sStatus=="success" && oDatosDevuelto.responseJSON.id!=null){
+                oUsuario=new Usuario(oDatosDevuelto.responseJSON.nombre, oDatosDevuelto.responseJSON.apellidos, 
+                oDatosDevuelto.responseJSON.email, oDatosDevuelto.responseJSON.password, oDatosDevuelto.responseJSON.telefono);
+            }
+        }
+    });
+
+    return oUsuario;
 }

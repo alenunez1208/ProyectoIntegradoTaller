@@ -166,6 +166,8 @@ $("#enlaceEditarUsuarioAdm").click(function(){
     var admin= "admin";
     cargarFrmEditarUsuario(admin);
 });
+$("#altaCitasFisicas").click(cargarFrmAltaCitasFisicas);
+$("#enlaceAdmCuentas").click(cargarFrmAdmCuentas);
 
 function cargarFrmIndexAdmin() {
     mostrarFormularios("frmIndexAdminMostrar", "formularioAdmin", false);
@@ -227,6 +229,7 @@ function cargarFrmSolicitudes() {
 
 function cargarFrmListadoUsuarios() {
     mostrarFormularios("frmListadoUsuariosMostrar", "formularioAdmin", true);
+    
     if ($('#frmListadoUsuariosMostrar').length == 0) {
         $("<div class='frmListadoUsuariosMostrar'>").appendTo('#formularioAdmin').load("../View/formularios/frmListadoUsuarios.html");
         $.getScript("../View/js/gestiones/gestionListarUsuarios.js", function () {
@@ -242,6 +245,7 @@ function cargarFrmListadoUsuarios() {
 
 function cargarFrmListadoCitas() {
     mostrarFormularios("frmListadoCitasMostrar", "formularioAdmin", true);
+
     if ($('#frmListadoCitasMostrar').length == 0) {
         $("<div class='frmListadoCitasMostrar'>").appendTo('#formularioAdmin').load("../View/formularios/frmListadoCitas.html");
         $.getScript("../View/js/gestiones/gestionListarCitas.js", function () {
@@ -251,6 +255,34 @@ function cargarFrmListadoCitas() {
     } else {
         $('.frmListadoCitasMostrar').css("display", "block");
         listadoCitasTotales();
+        contadorDeCitasPendientes();
+    }
+}
+
+function cargarFrmAltaCitasFisicas(){
+    mostrarFormularios("frmAltaCitaFisicaMostrar", "formularioAdmin", false);
+
+    if ($('#frmAltaCitaFisicaMostrar').length == 0) {
+        $("<div class='frmAltaCitaFisicaMostrar'>").appendTo('#formularioAdmin').load("../View/formularios/frmAltaCitaFisica.html");
+        $.getScript("../View/js/gestiones/gestionAltaCitaFisica.js", function () {
+            contadorDeCitasPendientes();
+        });
+    } else {
+        $('.frmAltaCitaFisicaMostrar').css("display", "block");
+        contadorDeCitasPendientes();
+    }
+}
+
+function cargarFrmAdmCuentas(){
+    mostrarFormularios("frmConfigurarCuentasMostrar", "formularioAdmin", false);
+
+    if ($('#frmConfigurarCuentasMostrar').length == 0) {
+        $("<div class='frmConfigurarCuentasMostrar'>").appendTo('#formularioAdmin').load("../View/formularios/frmConfigurarCuentas.html");
+        $.getScript("../View/js/gestiones/gestionConfigurarCuentas.js", function () {
+            contadorDeCitasPendientes();
+        });
+    } else {
+        $('.frmConfigurarCuentasMostrar').css("display", "block");
         contadorDeCitasPendientes();
     }
 }
