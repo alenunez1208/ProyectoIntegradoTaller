@@ -8,17 +8,18 @@
     $resultset= miClase::ejecutaConsultaAccion($sql);
     
     if($resultset>0){
-        $sql2= "SELECT id FROM citas WHERE fecha_esp='$oDatos->fechaEsp' AND hora='$oDatos->hora'";
-        $idCita= miClase::ejecutaConsulta($sql2);
+        $sql2= "SELECT id FROM usuarios WHERE email='$oDatos->email'";
+        $idUsuario= miClase::ejecutaConsulta($sql2);
 
-        if($idCita){
-            foreach($idCita as $citaId){                
-                $sql3= "INSERT INTO usuarios_citas(id_usuario,id_cita) values($oDatos->idUsuario, ".$citaId['id'].")";
+        if($idUsuario){
+            foreach($idUsuario as $usuarioId){
+                $sql4= "SELECT c.id FROM citas c, vista_usuario_citas v WHERE "                
+                $sql3= "INSERT INTO usuarios_citas(id_usuario,id_cita) values($oDatos->idUsuario, ".$usuarioId['id'].")";
                 $resultset3= miClase::ejecutaConsultaAccion($sql3);
                 echo json_encode(true);
             }
         } else{            
-            echo json_encode(false);
+            echo json_encode(true);
         }   
     } else{
         echo json_encode(false);

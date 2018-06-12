@@ -43,3 +43,28 @@ function cargarComboHoras(dFecha){
         }
     }, "text");
 }
+
+function altaCitaFisicaTaller(){
+    var oE= oEvento || windows.event;
+    var oForm= document.getElementById("frmAltaCitaFisica");
+
+    var email= oForm.txtEmailFisico.value.trim();
+    var asunto= oForm.txtAsuntoCitaFisico.value.trim();
+    var fecha= oForm.txtFechaFisico.value.trim();
+    var hora= oForm.comboHoras.options[comboHoras.selectedIndex].value.trim();
+    var descripcion= oForm.txtMotivoCitaFisica.value.trim();
+    
+    var oCita= new CitaFisica(email,asunto,fecha,hora,descripcion);
+    var datos= "datos="+JSON.stringify(oCita);
+
+    $.post("../Model/altaCitaFisica.php",datos,respuestaAltaCitaFisica,"json");
+}
+
+function respuestaAltaCitaFisica(oDatosDevuelto, sStatus, oAjax){
+    if (oDatosDevuelto == true){
+        alert("Cita guardada");
+        document.frmAltaCitaFisica.reset();
+    } else {
+        alert("Problemas al guardar la cita");
+    }
+}
