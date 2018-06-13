@@ -1,19 +1,20 @@
 var oCapaList = document.getElementById("listadoCitasHoy");
+var dateobj = new Date();
+function pad(n) {return n < 10 ? "0"+n : n;}
 
 function listadoDeCitasDeHoy() {
     // Instanciar objeto Ajax
     var oAjax = instanciarXHR();
 
     //1. Preparar parametros
-    var fecha= new Date();
-    var fechaConver= fecha.toLocaleDateString("es-ES");
-    var datos= "datos="+fecha;
+    var result = pad(dateobj.getDate())+"/"+pad(dateobj.getMonth()+1)+"/"+dateobj.getFullYear();
+    var datos= "datos="+result;
     //2. Configurar la llamada --> Asincrono por defecto
-    oAjax.open("GET","../Model/listarCitasHoy.php");
+    oAjax.open("POST","../Model/listarCitasHoy.php");
 
     //3. Asociar manejador de evento de la respuesta
+    oAjax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     oAjax.addEventListener("readystatechange", respuestaListadoCitasHoy, false);
-    oAjax.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
 
     //4. Hacer la llamada
     oAjax.send(datos);
@@ -39,7 +40,7 @@ function respuestaListadoCitasHoy(){
 
         for(var i=0;i<oFilas.length;i++){
             oFila= document.createElement("LI");
-            oTexto= document.createTextNode(oFilas[i].apellidos+", "+oFilas[i].nombre+": "+oFilas[i].hora+" "+oFilas[i].asunto);
+            oTexto= document.createTextNode(oFilas[i].nombre+", "+oFilas[i].apellidos+": "+oFilas[i].hora+" "+oFilas[i].asunto);
             oFila.appendChild(oTexto);
             oLista.appendChild(oFila);
         }

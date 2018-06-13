@@ -33,7 +33,7 @@ function cargarComboHoras(dFecha){
             var oFilas = JSON.parse(sDatosDevuelto);            
             oCombo= document.getElementById("comboHoras");
             oCombo.innerHTML="";
-                
+                            
             for(var i=0; i<oFilas.length; i++){
                 var selectOp= document.createElement("option");
                 selectOp.value= oFilas[i].hora;
