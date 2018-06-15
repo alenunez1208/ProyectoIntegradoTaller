@@ -44,7 +44,7 @@ function cargarComboHoras(dFecha){
     }, "text");
 }
 
-function altaCitaFisicaTaller(){
+function altaCitaFisicaTaller(oEvento){
     var oE= oEvento || windows.event;
     var oForm= document.getElementById("frmAltaCitaFisica");
 
@@ -64,6 +64,11 @@ function respuestaAltaCitaFisica(oDatosDevuelto, sStatus, oAjax){
     if (oDatosDevuelto == true){
         alert("Cita guardada");
         document.frmAltaCitaFisica.reset();
+        oCombo = document.getElementById("comboHoras");
+        oCombo.innerHTML = "";
+        var selectOp = document.createElement("option");
+        selectOp.textContent = "Seleccione una hora..";
+        oComboHoras.add(selectOp);
     } else {
         alert("Problemas al guardar la cita");
     }

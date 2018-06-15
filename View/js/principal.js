@@ -176,6 +176,8 @@ function cargarFrmIndexAdmin() {
         $("<div class='frmIndexAdminMostrar'>").appendTo('#formularioAdmin').load("../View/formularios/frmIndexAdmin.html", function () {
             $.getScript("../View/js/clases/Usuario.js");
             $.getScript("../View/js/gestiones/gestionListarCitasHoy.js", function () {
+                var btnFiltrarFechas = document.getElementById("btnFiltrarFecha");
+                btnFiltrarFechas.addEventListener("click", filtrarPorFecha, false);
                 listadoDeCitasDeHoy();
                 contadorDeCitasPendientes();
             });
@@ -264,7 +266,10 @@ function cargarFrmAltaCitasFisicas(){
 
     if ($('#frmAltaCitaFisicaMostrar').length == 0) {
         $("<div class='frmAltaCitaFisicaMostrar'>").appendTo('#formularioAdmin').load("../View/formularios/frmAltaCitaFisica.html");
+        $.getScript("../View/js/clases/CitaFisica.js");
         $.getScript("../View/js/gestiones/gestionAltaCitaFisica.js", function () {
+            var btnAltaCitaFisica = document.getElementById("btnAltaCitaFisica");
+            btnAltaCitaFisica.addEventListener("click", altaCitaFisicaTaller, false);
             contadorDeCitasPendientes();
         });
     } else {
