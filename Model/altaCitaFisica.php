@@ -19,13 +19,14 @@
                 if($idCita){
                     foreach($idCita as $citaId){
                         $sql3= "INSERT INTO usuarios_citas(id_usuario,id_cita) values(".$usuarioId['id'].",".$citaId['id'].")";
-                        $resultset3= miClase::ejecutaConsultaAccion($sql3);
-                        echo json_encode(true);
-                    }
-                }
+                        $resultset3= miClase::ejecutaConsultaAccion($sql3);                        
+                    }                   
+                } 
             }
-        } else{            
+
             echo json_encode(true);
+        } else{            
+            echo json_encode(false);
         }   
     } else{
         echo json_encode(false);

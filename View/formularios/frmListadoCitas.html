@@ -1,7 +1,19 @@
 <div id="frmListadoCitasMostrar">
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <h2 id="tituloLoc">Listado total de citas</h2>
+            <h2 id="tituloLoc">Listado de citas de usuarios</h2>
+            <br>
+            <form id="frmFiltroCitasUsuarios" name="frmFiltroCitasUsuarios" style="float: right;">
+                <div class="form-inline">
+                    <label>Email: </label>
+                    <input type="text" class="form-control" name="txtEmailFiltrarUser" id="txtEmailFiltrarUser" placeholder="example@example.com" required>
+                    <label> &nbsp Estado: </label>
+                    <input type="radio" id="radioEstado" name="radioEstado" value="todas" checked>Todas
+                    <input type="radio" id="radioEstado1" name="radioEstado" value="aceptada">Aceptada
+                    <input type="radio" id="radioEstado2" name="radioEstado" value="denegada">Denegada &nbsp &nbsp &nbsp
+                    <button type="button" id="btnFiltrarCitasUsuario" name="btnFiltrarCitasUsuario" class="btn btn-primary">Filtrar</button>
+                </div>                    
+            </form>
             <br>
             <br>
         </div>

@@ -1,4 +1,5 @@
 var oCapaList = document.getElementById("listadoCitasHoy");
+var oCapaList2 = document.getElementById("listadoCitasHoyNoUser");
 var dateobj = new Date();
 function pad(n) {return n < 10 ? "0"+n : n;}
 
@@ -27,6 +28,8 @@ $(function () {
 });
 
 function listadoDeCitasDeHoy() {
+    $('#txtFechaFiltrar').val(pad(dateobj.getDate())+"/"+pad(dateobj.getMonth()+1)+"/"+dateobj.getFullYear());
+
     // Instanciar objeto Ajax
     var oAjax = instanciarXHR();
 
@@ -39,6 +42,24 @@ function listadoDeCitasDeHoy() {
     //3. Asociar manejador de evento de la respuesta
     oAjax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     oAjax.addEventListener("readystatechange", respuestaListadoCitasHoy, false);
+
+    //4. Hacer la llamada
+    oAjax.send(datos);
+}
+
+function listadoDeCitasDeHoyNoUser() {
+    // Instanciar objeto Ajax
+    var oAjax = instanciarXHR();
+
+    //1. Preparar parametros
+    var result = pad(dateobj.getDate())+"/"+pad(dateobj.getMonth()+1)+"/"+dateobj.getFullYear();
+    var datos= "datos="+result;
+    //2. Configurar la llamada --> Asincrono por defecto
+    oAjax.open("POST","../Model/listarCitasNoUser.php");
+
+    //3. Asociar manejador de evento de la respuesta
+    oAjax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    oAjax.addEventListener("readystatechange", respuestaListadoCitasHoyNoUser, false);
 
     //4. Hacer la llamada
     oAjax.send(datos);
@@ -64,6 +85,21 @@ function filtrarPorFecha(oEvento){
 
     //4. Hacer la llamada
     oAjax.send(datos);
+
+    // Instanciar objeto Ajax
+    var oAjax2 = instanciarXHR();
+
+    //1. Preparar parametros
+    var datos2= "datos="+fecha;
+    //2. Configurar la llamada --> Asincrono por defecto
+    oAjax2.open("POST","../Model/listarCitasNoUser.php");
+
+    //3. Asociar manejador de evento de la respuesta
+    oAjax2.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    oAjax2.addEventListener("readystatechange", respuestaListadoCitasHoyNoUser, false);
+
+    //4. Hacer la llamada
+    oAjax2.send(datos2);
 }
 
 function respuestaListadoCitasHoy(){
@@ -92,5 +128,34 @@ function respuestaListadoCitasHoy(){
         }
         
 		oCapaList.appendChild(oLista);
+    }
+}
+
+function respuestaListadoCitasHoyNoUser(){
+    var oAjax = this;
+
+	// 5. Proceso la respuesta cuando llega
+	if (oAjax.readyState == 4 && oAjax.status == 200) {
+        var sDatos = oAjax.responseText;
+
+        var oFilas = JSON.parse(sDatos);
+
+        var listaEliminar = document.querySelector(".listaDeCitasDeHoyNoUser");
+		if (listaEliminar != null)
+            listaEliminar.remove();
+
+        var oLista;
+
+        oLista= document.createElement("ul");
+        oLista.classList.add("listaDeCitasDeHoyNoUser");
+
+        for(var i=0;i<oFilas.length;i++){
+            oFila= document.createElement("LI");
+            oTexto= document.createTextNode(oFilas[i].email+": "+oFilas[i].hora+" "+oFilas[i].asunto);
+            oFila.appendChild(oTexto);
+            oLista.appendChild(oFila);
+        }
+        
+		oCapaList2.appendChild(oLista);
     }
 }

@@ -60,8 +60,8 @@ function cargarFrmPreguntas(usuario) {
                 btnEnviarPregunta.addEventListener("click", enviarPregunta, false);
                 if (usuario == "si") {
                     $("#txtEmail").attr("readonly", true);
-                    $("#txtTelefono").attr("readonly", true);+
-                    rellenaCamposUsuario();
+                    $("#txtTelefono").attr("readonly", true); +
+                        rellenaCamposUsuario();
                 }
             } else {
                 bFormularioPreguntasCargado = true;
@@ -93,8 +93,8 @@ $("#presupuestosYPreguntasUsuario").click(function () {
     cargarFrmPreguntas(usuario);
 });
 $("#solicitudDeCitas").click(cargarFrmSolicitudDeCitas);
-$("#enlaceEditarUsuario").click(function(){
-    var usuario= "usuario";
+$("#enlaceEditarUsuario").click(function () {
+    var usuario = "usuario";
     cargarFrmEditarUsuario(usuario);
 });
 
@@ -102,20 +102,22 @@ function cargarFrmSolicitudDeCitas() {
     mostrarFormularios("frmSolicitudDeCitasMostrar", "formulario", false);
 
     if ($('#frmSolicitudDeCitasMostrar').length == 0) {
-        $("<div class='frmSolicitudDeCitasMostrar'>").appendTo('#formulario').load("../View/formularios/frmSolicitudDeCitas.html", function(){
+        $("<div class='frmSolicitudDeCitasMostrar'>").appendTo('#formulario').load("../View/formularios/frmSolicitudDeCitas.html", function () {
             $.getScript("../View/js/clases/Cita.js");
-            $.getScript("../View/js/gestiones/gestionPedirCita.js",function(){
+            $.getScript("../View/js/gestiones/gestionPedirCita.js", function () {
                 var btnEnviarSolicitud = document.getElementById("btnEnviarSolicitud");
                 btnEnviarSolicitud.addEventListener("click", solicitarUnaCita, false);
+                cargarCalendar1();
             });
         });
     } else {
         $('.frmSolicitudDeCitasMostrar').css("display", "block");
+        cargarCalendar1();
     }
 }
 
-function cargarFrmEditarUsuario(tipo){
-    if(tipo=="usuario"){
+function cargarFrmEditarUsuario(tipo) {
+    if (tipo == "usuario") {
         mostrarFormularios("frmEditarUsuarioMostrar", "formulario", false);
 
         if ($('#frmEditarUsuarioMostrar').length == 0) {
@@ -130,8 +132,10 @@ function cargarFrmEditarUsuario(tipo){
         } else {
             $('.frmEditarUsuarioMostrar').css("display", "block");
             rellenarCamposEditarUsuario();
+            var btnEditarUsuario = document.getElementById("btnEditarUsuario");
+            btnEditarUsuario.addEventListener("click", modificarDatosPersonales, false);
         }
-    } else{
+    } else {
         mostrarFormularios("frmEditarUsuarioMostrar", "formularioAdmin", false);
 
         if ($('#frmEditarUsuarioMostrar').length == 0) {
@@ -147,6 +151,8 @@ function cargarFrmEditarUsuario(tipo){
             $('.frmEditarUsuarioMostrar').css("display", "block");
             contadorDeCitasPendientes();
             rellenarCamposEditarUsuario();
+            var btnEditarUsuario = document.getElementById("btnEditarUsuario");
+            btnEditarUsuario.addEventListener("click", modificarDatosPersonales, false);
         }
     }
 }
@@ -162,12 +168,13 @@ $("#altaUsuarios").click(cargarFrmAltaUsuario);
 $("#solicitudCitas").click(cargarFrmSolicitudes);
 $("#listadoTodosUsuarios").click(cargarFrmListadoUsuarios);
 $("#listarTodasCitas").click(cargarFrmListadoCitas);
-$("#enlaceEditarUsuarioAdm").click(function(){
-    var admin= "admin";
+$("#enlaceEditarUsuarioAdm").click(function () {
+    var admin = "admin";
     cargarFrmEditarUsuario(admin);
 });
 $("#altaCitasFisicas").click(cargarFrmAltaCitasFisicas);
 $("#enlaceAdmCuentas").click(cargarFrmAdmCuentas);
+$("#listarCitasFisicas").click(cargarFrmListadoCitasFisicas);
 
 function cargarFrmIndexAdmin() {
     mostrarFormularios("frmIndexAdminMostrar", "formularioAdmin", false);
@@ -179,12 +186,17 @@ function cargarFrmIndexAdmin() {
                 var btnFiltrarFechas = document.getElementById("btnFiltrarFecha");
                 btnFiltrarFechas.addEventListener("click", filtrarPorFecha, false);
                 listadoDeCitasDeHoy();
+                listadoDeCitasDeHoyNoUser()
                 contadorDeCitasPendientes();
             });
         });
     } else {
         $('.frmIndexAdminMostrar').css("display", "block");
+        document.frmFiltroFechas.reset();
+        var btnFiltrarFechas = document.getElementById("btnFiltrarFecha");
+        btnFiltrarFechas.addEventListener("click", filtrarPorFecha, false);
         listadoDeCitasDeHoy();
+        listadoDeCitasDeHoyNoUser()
         contadorDeCitasPendientes();
     }
 }
@@ -209,6 +221,8 @@ function cargarFrmAltaUsuario() {
         });
     } else {
         $('.frmAltaUsuarioMostrar').css("display", "block");
+        var btnAltaUsuario = document.getElementById("btnAltaUsuario");
+        btnAltaUsuario.addEventListener("click", altaUsuario, false);
         contadorDeCitasPendientes();
     }
 }
@@ -221,17 +235,19 @@ function cargarFrmSolicitudes() {
         $.getScript("../View/js/gestiones/gestionListarSolicitudes.js", function () {
             listadoSolicituesPendientes();
             contadorDeCitasPendientes();
+            cargarCalendar1();
         });
     } else {
         $('.frmSolicituesPendientesMostrar').css("display", "block");
         listadoSolicituesPendientes();
         contadorDeCitasPendientes();
+        cargarCalendar1();
     }
 }
 
 function cargarFrmListadoUsuarios() {
     mostrarFormularios("frmListadoUsuariosMostrar", "formularioAdmin", true);
-    
+
     if ($('#frmListadoUsuariosMostrar').length == 0) {
         $("<div class='frmListadoUsuariosMostrar'>").appendTo('#formularioAdmin').load("../View/formularios/frmListadoUsuarios.html");
         $.getScript("../View/js/gestiones/gestionListarUsuarios.js", function () {
@@ -251,17 +267,22 @@ function cargarFrmListadoCitas() {
     if ($('#frmListadoCitasMostrar').length == 0) {
         $("<div class='frmListadoCitasMostrar'>").appendTo('#formularioAdmin').load("../View/formularios/frmListadoCitas.html");
         $.getScript("../View/js/gestiones/gestionListarCitas.js", function () {
+            var btnFiltroCita = document.getElementById("btnFiltrarCitasUsuario");
+            btnFiltroCita.addEventListener("click", filtroCitas, false);
             listadoCitasTotales();
             contadorDeCitasPendientes();
         });
     } else {
         $('.frmListadoCitasMostrar').css("display", "block");
+        document.frmFiltroCitasUsuarios.reset();
+        var btnFiltroCita = document.getElementById("btnFiltrarCitasUsuario");
+        btnFiltroCita.addEventListener("click", filtroCitas, false);
         listadoCitasTotales();
         contadorDeCitasPendientes();
     }
 }
 
-function cargarFrmAltaCitasFisicas(){
+function cargarFrmAltaCitasFisicas() {
     mostrarFormularios("frmAltaCitaFisicaMostrar", "formularioAdmin", false);
 
     if ($('#frmAltaCitaFisicaMostrar').length == 0) {
@@ -271,40 +292,73 @@ function cargarFrmAltaCitasFisicas(){
             var btnAltaCitaFisica = document.getElementById("btnAltaCitaFisica");
             btnAltaCitaFisica.addEventListener("click", altaCitaFisicaTaller, false);
             contadorDeCitasPendientes();
+            cargarCalendar2();
         });
     } else {
         $('.frmAltaCitaFisicaMostrar').css("display", "block");
+        var btnAltaCitaFisica = document.getElementById("btnAltaCitaFisica");
+        btnAltaCitaFisica.addEventListener("click", altaCitaFisicaTaller, false);
+        contadorDeCitasPendientes();
+        cargarCalendar2();
+    }
+}
+
+function cargarFrmListadoCitasFisicas() {
+    mostrarFormularios("frmListadoCitasFisicasMostrar", "formularioAdmin", true);
+
+    if ($('#frmListadoCitasFisicasMostrar').length == 0) {
+        $("<div class='frmListadoCitasFisicasMostrar'>").appendTo('#formularioAdmin').load("../View/formularios/frmListadoCitasFisicas.html");
+        $.getScript("../View/js/gestiones/gestionListarCitasFisicas.js", function () {
+            var btnFiltrarEmailNoUser = document.getElementById("btnFiltrarEmailNoUser");
+            btnFiltrarEmailNoUser.addEventListener("click", filtroEmailNoUser, false);
+            listadoCitasFisicas();
+            contadorDeCitasPendientes();
+        });
+    } else {
+        $('.frmListadoCitasFisicasMostrar').css("display", "block");
+        var btnFiltrarEmailNoUser = document.getElementById("btnFiltrarEmailNoUser");
+        btnFiltrarEmailNoUser.addEventListener("click", filtroEmailNoUser, false);
+        document.frmFiltroEmailNoUser.reset();
+        listadoCitasFisicas();
         contadorDeCitasPendientes();
     }
 }
 
-function cargarFrmAdmCuentas(){
+function cargarFrmAdmCuentas() {
     mostrarFormularios("frmConfigurarCuentasMostrar", "formularioAdmin", false);
 
     if ($('#frmConfigurarCuentasMostrar').length == 0) {
         $("<div class='frmConfigurarCuentasMostrar'>").appendTo('#formularioAdmin').load("../View/formularios/frmConfigurarCuentas.html");
         $.getScript("../View/js/gestiones/gestionConfigurarCuentas.js", function () {
+            var btnActualizarTwitter = document.getElementById("btnCambiarEnlaceTwitter");
+            btnActualizarTwitter.addEventListener("click", actualizarTwitter, false);
+            var btnActualizarCalendar = document.getElementById("btnCambiarEnlaceCalendar");
+            btnActualizarCalendar.addEventListener("click", actualizarCalendar, false);
             contadorDeCitasPendientes();
         });
     } else {
         $('.frmConfigurarCuentasMostrar').css("display", "block");
+        var btnActualizarTwitter = document.getElementById("btnCambiarEnlaceTwitter");
+        btnActualizarTwitter.addEventListener("click", actualizarTwitter, false);
+        var btnActualizarCalendar = document.getElementById("btnCambiarEnlaceCalendar");
+        btnActualizarCalendar.addEventListener("click", actualizarCalendar, false);
         contadorDeCitasPendientes();
     }
 }
 
-var oCapa= document.getElementById("anadirContador");
-function contadorDeCitasPendientes(){
-	$.get("../Model/contadorCitasPendientes.php", function (sDatosDevuelto, sStatus, oAjax) {
-		if (sStatus == "success") {
-            mostrar= document.querySelector(".contadorCitasPendientes");
+var oCapa = document.getElementById("anadirContador");
+function contadorDeCitasPendientes() {
+    $.get("../Model/contadorCitasPendientes.php", function (sDatosDevuelto, sStatus, oAjax) {
+        if (sStatus == "success") {
+            mostrar = document.querySelector(".contadorCitasPendientes");
             if (mostrar != null)
                 mostrar.remove();
-                
-            var span= document.createElement("span");
+
+            var span = document.createElement("span");
             span.classList.add("contadorCitasPendientes");
             span.append(sDatosDevuelto);
             oCapa.appendChild(span);
-		}
-	}, "text");
+        }
+    }, "text");
 }
 /*----------------------------------------------------------------*/

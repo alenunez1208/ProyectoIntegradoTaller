@@ -101,3 +101,37 @@ function aceptarCita(idCita, bEstado) {
 			}
 		}, "text");
 }
+
+function cargarCalendar1() {
+    // Instanciar objeto Ajax
+    var oAjax = instanciarXHR();
+
+    //2. Configurar la llamada --> Asincrono por defecto
+    oAjax.open("GET", "../Model/cargarCalendar.php");
+
+    //3. Asociar manejador de evento de la respuesta
+    oAjax.addEventListener("readystatechange", function () {
+        var oAjax = this;
+
+        // 5. Proceso la respuesta cuando llega
+        if (oAjax.readyState == 4 && oAjax.status == 200) {
+
+            var sDatos = oAjax.responseText;
+
+            var oFilas = JSON.parse(sDatos);
+            console.log(oFilas.calendar);
+            var conCalendar= document.getElementById("calendar1");
+            var divCalendar = document.querySelector("#calendar1 iframe");
+
+            if (divCalendar != null)
+				divCalendar.remove();
+				
+			conCalendar.innerHTML= oFilas.calendar;
+			divCalendar = document.querySelector("#calendar1 iframe");
+            divCalendar.classList.add("calendar1");
+        }
+    }, false);
+
+    //4. Hacer la llamada
+    oAjax.send();
+}

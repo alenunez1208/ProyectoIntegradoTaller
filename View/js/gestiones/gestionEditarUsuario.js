@@ -24,10 +24,10 @@ function modificarDatosPersonales(oEvento){
     var oUsuario= new Usuario(sNombre,sApellidos,sEmail,iTlt,sPass);
     var datos = "id="+iId+"&datos=" + JSON.stringify(oUsuario);
 
-    $.post("../Model/editarUsuario.php", datos, respuestaPregunta, "json");
+    $.post("../Model/editarUsuario.php", datos, respuestaEditarUsuario, "json");
 }
 
-function respuestaPregunta(oDatosDevuelto, sStatus, oAjax) {
+function respuestaEditarUsuario(oDatosDevuelto, sStatus, oAjax) {
     if (oDatosDevuelto == true) {
         alert("Usuario modificado correctamente");
         document.frmEditarUsuario.reset();

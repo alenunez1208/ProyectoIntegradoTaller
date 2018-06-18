@@ -12,12 +12,13 @@ function altaUsuario(oEvento) {
     var oUsuario = new Usuario(nombreUsu, apellidosUsu, emailUsu, passwordUsu, tlfUsu);
     var datos = "datos=" + JSON.stringify(oUsuario);
 
-    $.post("../Model/altaUsuario.php", datos, respuestaPregunta, "json");
+    $.post("../Model/altaUsuario.php", datos, respuestaAltaUsuario, "json");
 }
 
-function respuestaPregunta(oDatosDevuelto, sStatus, oAjax) {
+function respuestaAltaUsuario(oDatosDevuelto, sStatus, oAjax) {
     if (oDatosDevuelto == true) {
-        alert("Usuario dado de alta correctamente");
+        alertify.success("Usuario dado de alta correctamente");
+        //alert("Usuario dado de alta correctamente");
         document.frmAltaUsuario.reset();
     } else if(oDatosDevuelto == "existe") {
         alert("Usuario existente");

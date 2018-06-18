@@ -1,6 +1,6 @@
 var oCapaListado= document.getElementById("TodosLosListados");
 
-function listadoCitasTotales()
+function listadoCitasFisicas()
 {
 	 // Instanciar objeto Ajax
 	 var oAjax = instanciarXHR();
@@ -9,21 +9,21 @@ function listadoCitasTotales()
 	 //var sDatosEnvio;
 
 	 //2. Configurar la llamada --> Asincrono por defecto
-	 oAjax.open("GET", "../Model/listarCitasTotales.php");
+	 oAjax.open("GET", "../Model/listarCitasFisicas.php");
 
 	 //3. Asociar manejador de evento de la respuesta
-	 oAjax.addEventListener("readystatechange", respuestaListadoCitasTotales, false);
+	 oAjax.addEventListener("readystatechange", respuestaListadoCitasFisicas, false);
 
 	 //4. Hacer la llamada
 	 oAjax.send();
 	
 }
 
-function filtroCitas(oEvento) {
+function filtroEmailNoUser(oEvento){
 	var oE = oEvento || windows.event;
 
-	var param1= document.getElementById("txtEmailFiltrarUser").value.trim();
-	var param2= $('input:radio[name=radioEstado]:checked').val();
+	var param1= document.getElementById("txtEmailFiltrarNoUser").value.trim();
+	var param2= "";
 
     // Instanciar objeto Ajax
     var oAjax = instanciarXHR();
@@ -35,13 +35,13 @@ function filtroCitas(oEvento) {
 
     //3. Asociar manejador de evento de la respuesta
     oAjax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    oAjax.addEventListener("readystatechange", respuestaListadoCitasTotales, false);
+    oAjax.addEventListener("readystatechange", respuestaListadoCitasFisicas, false);
 
     //4. Hacer la llamada
     oAjax.send(datos);
 }
 
-function respuestaListadoCitasTotales()
+function respuestaListadoCitasFisicas()
 {
 	var oAjax = this;
 	
@@ -57,22 +57,18 @@ function respuestaListadoCitasTotales()
 			tablaEliminar.remove();
 
 		var cabeceras=[];
-		cabeceras[0]="APELLIDOS";
-		cabeceras[1]="NOMBRE";
-		cabeceras[2]="EMAIL";
-		cabeceras[3]="TELEFONO";
-		cabeceras[4]="ASUNTO";
-		cabeceras[5]="FECHA";
-		cabeceras[6]="HORA";
-		cabeceras[7]="MOTIVO";
-		cabeceras[8]="ESTADO";
+		cabeceras[0]="EMAIL";
+		cabeceras[1]="ASUNTO";
+		cabeceras[2]="FECHA";
+		cabeceras[3]="HORA";
+		cabeceras[4]="MOTIVO";
 		var oCelda;
 		var oTexto;
 
 		var oTabla=document.createElement("TABLE");
 		var oFila=oTabla.insertRow();
 		oFila.classList.add("thead-dark");
-		for ( var i=0;i<9;i++){// crea la cabecera la tabla
+		for ( var i=0;i<5;i++){// crea la cabecera la tabla
 			oCelda=document.createElement("TD");
 			oTexto=document.createTextNode(cabeceras[i]);
 			oCelda.appendChild(oTexto);
@@ -82,24 +78,15 @@ function respuestaListadoCitasTotales()
 
 		for ( var i=0;i<oFilas.length;i++){
 			
-			oFila=oTabla.insertRow(1);
-			oCelda=oFila.insertCell();
-			oTexto=document.createTextNode(oFilas[i].apellidos);
-			oCelda.appendChild(oTexto);
-			oCelda=oFila.insertCell();
-			oTexto=document.createTextNode(oFilas[i].nombre);
-			oCelda.appendChild(oTexto);
+            oFila=oTabla.insertRow(1);
 			oCelda=oFila.insertCell();
 			oTexto=document.createTextNode(oFilas[i].email);
-			oCelda.appendChild(oTexto);
-			oCelda=oFila.insertCell();
-			oTexto=document.createTextNode(oFilas[i].telefono);
 			oCelda.appendChild(oTexto);
 			oCelda=oFila.insertCell();
 			oTexto=document.createTextNode(oFilas[i].asunto);
 			oCelda.appendChild(oTexto);
 			oCelda=oFila.insertCell();
-			oTexto=document.createTextNode(oFilas[i].fecha);
+			oTexto=document.createTextNode(oFilas[i].fecha_esp);
 			oCelda.appendChild(oTexto);
 			oCelda=oFila.insertCell();
 			oTexto=document.createTextNode(oFilas[i].hora);
@@ -107,9 +94,6 @@ function respuestaListadoCitasTotales()
 			oCelda=oFila.insertCell();
 			oTexto=document.createTextNode(oFilas[i].motivo);
 			oCelda.appendChild(oTexto);
-			oCelda=oFila.insertCell();
-			oTexto=document.createTextNode(oFilas[i].estado);
-            oCelda.appendChild(oTexto);
 		}
 
 		oTabla.classList.add("table");
