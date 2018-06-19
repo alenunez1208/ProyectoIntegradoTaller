@@ -13,9 +13,12 @@
 
         if($idCita){
             foreach($idCita as $citaId){                
-                $sql3= "INSERT INTO usuarios_citas(id_usuario,id_cita) values($oDatos->idUsuario, ".$citaId['id'].")";
-                $resultset3= miClase::ejecutaConsultaAccion($sql3);
                 
+            $sql3= "INSERT INTO usuarios_citas(id_usuario,id_cita) values($oDatos->idUsuario, ".$citaId['id'].")";
+            
+            }
+            $resultset3= miClase::ejecutaConsultaAccion($sql3);
+             
                 $to_address = "carquintotaller@gmail.com";
                 $from_address = "carquintotaller@gmail.com";
                 $subject = "CITA PENDIENTE";
@@ -31,7 +34,6 @@
                 if($success){
                     echo json_encode(true);
                 } 
-            }
         } else{            
             echo json_encode(false);
         }   

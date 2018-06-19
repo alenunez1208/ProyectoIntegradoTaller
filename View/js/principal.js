@@ -4,51 +4,12 @@ $("#myBtn").click(function () {
     if ($("#myModal").length == 0) {
         $('#formLogin').load("../View/formularios/login.html", function () {
             $("#myModal").modal();
-            //var btnLogearse = document.getElementById("btnLogin");
-            //btnLogearse.addEventListener("click", formularioLoginValidar, false);
         });
     } else {
         $('#myModal').show("normal");
-        //var btnLogearse = document.getElementById("btnLogin");
-        //btnLogearse.addEventListener("click", formularioLoginValidar, false);
     }
 
 });
-/*
-function formularioLoginValidar(oEvento) {
-    var oE = oEvento || windows.event;
-    var oForm = document.getElementById("formularioLogin");
-
-    if(validarLogin(oForm)){
-        var ul= oForm.username.value.trim();
-        var pl= oForm.password.value.trim();
-
-        datos= "username="+ul+"&password="+pl;
-
-        $.post("../Controller/index.php", datos);
-    }
-}
-
-function validarLogin(frm) {
-    var error = "";
-    var bValido= true;
-
-    var usernameLogin = frm.username.value.trim();
-    frm.username.value = frm.username.value.trim();
-
-    if (usernameLogin == "") {
-        frm.username.parentNode.classList.add("has-error");
-        frm.username.focus();
-        error = "";
-        falloValidacion(error, frm.username);
-        bValido = false;
-    } else {
-        frm.username.parentNode.classList.remove("has-error");
-        falloValidacion("", frm.username);
-    }
-
-    return bValido;
-}*/
 /*----------------------------------------------------------------*/
 /*--------------------------SIN LOGUEO----------------------------*/
 var bFormularioPreguntasCargado = false;
@@ -74,8 +35,10 @@ function cargarFrmIndex() {
 
     if ($('#frmIndex').length == 0) {
         $("<div class='frmIndex'>").appendTo('#formulario').load("../View/formularios/frmIndex.html");
+        //cargarTwitter();
     } else {
         $('.frmIndex').css("display", "block");
+        //cargarTwitter();
     }
 }
 
@@ -225,7 +188,7 @@ function cargarFrmIndexAdmin() {
                 var btnFiltrarFechas = document.getElementById("btnFiltrarFecha");
                 btnFiltrarFechas.addEventListener("click", filtrarPorFecha, false);
                 listadoDeCitasDeHoy();
-                listadoDeCitasDeHoyNoUser()
+                listadoDeCitasDeHoyNoUser();
                 contadorDeCitasPendientes();
             });
         });
@@ -235,7 +198,7 @@ function cargarFrmIndexAdmin() {
         var btnFiltrarFechas = document.getElementById("btnFiltrarFecha");
         btnFiltrarFechas.addEventListener("click", filtrarPorFecha, false);
         listadoDeCitasDeHoy();
-        listadoDeCitasDeHoyNoUser()
+        listadoDeCitasDeHoyNoUser();
         contadorDeCitasPendientes();
     }
 }
@@ -421,3 +384,34 @@ var oExpRegTelefono = /^(\+34|0034|34)?[6|7|9][0-9]{8}$/; //TELEFONOS ESPAÑOLES
 var oExpRegDescripcion = /^[a-z\s\d-]{5,350}$/i; // entre 5 y 350 caracteres con numeros
 var oExpRegFecha = /^(?:3[01]|[12][0-9]|0?[1-9])([\-/.])(0?[1-9]|1[1-2])\1\d{4}$/;
 /*----------------------------------------------------------------*/
+/*function cargarTwitter() {
+    // Instanciar objeto Ajax
+    var oAjax = instanciarXHR();
+
+    //2. Configurar la llamada --> Asincrono por defecto
+    oAjax.open("GET", "../Model/cargarTwitter.php");
+
+    //3. Asociar manejador de evento de la respuesta
+    oAjax.addEventListener("readystatechange", function () {
+        var oAjax = this;
+
+        // 5. Proceso la respuesta cuando llega
+        if (oAjax.readyState == 4 && oAjax.status == 200) {
+
+            var sDatos = oAjax.responseText;
+
+            var oFilas = JSON.parse(sDatos);
+            var conTw= document.getElementById("twitterCargar");
+            var divTw = document.querySelector("#twitterCargar a");
+
+            if (divTw != null)
+            divTw.remove();
+				
+			conTw.innerHTML= oFilas.calendar;
+			divTw = document.querySelector("#twitterCargar a");
+        }
+    }, false);
+
+    //4. Hacer la llamada
+    oAjax.send();
+}*/

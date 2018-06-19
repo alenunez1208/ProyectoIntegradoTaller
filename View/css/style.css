@@ -1,4 +1,6 @@
 /*----------------ELEMENTOS ESTATICOS DE LA WEB---------------------*/
+@import url('https://fonts.googleapis.com/css?family=Titillium+Web');
+
 .jumbotron {
     background-image: url("../images/cabecera2.jpg");
     background-repeat: no-repeat;
@@ -10,12 +12,11 @@
     width: 40%;
     height: 40%;
 }
-/*
-body {
-	background-image: url("../images/fondo1.jpg");
-	color: black;
-}
 
+body {
+	font-family: 'Titillium Web', sans-serif;
+}
+/*
 #formulario {
 	background-color: white;
 	padding: 2%;

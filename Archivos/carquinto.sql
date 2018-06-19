@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-06-2018 a las 19:04:59
+-- Tiempo de generación: 19-06-2018 a las 22:46:41
 -- Versión del servidor: 10.1.28-MariaDB
 -- Versión de PHP: 7.1.11
 
@@ -21,8 +21,6 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `carquinto`
 --
-CREATE DATABASE IF NOT EXISTS `carquinto` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `carquinto`;
 
 -- --------------------------------------------------------
 
@@ -40,6 +38,19 @@ CREATE TABLE `citas` (
   `estado` varchar(15) NOT NULL,
   `email` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `citas`
+--
+
+INSERT INTO `citas` (`id`, `asunto`, `fecha`, `fecha_esp`, `hora`, `motivo`, `estado`, `email`) VALUES
+(1, 'weafwefadsf', '2018-06-19', '20/06/2018', '15:00', 'dfasdfsf', 'aceptada', NULL),
+(2, 'asasdadasd', '2018-06-19', '20/06/2018', '13:00', 'sadasdasdas', 'pendiente', NULL),
+(3, 'wqdq', '2018-06-19', '19/06/2018', '14:00', 'wqdqwdqw', 'pendiente', NULL),
+(4, 'dfwdff', '2018-06-19', '14/06/2018', '09:00', 'ewfewfw', 'pendiente', NULL),
+(5, 'sdaASDSAD', '2018-06-19', '23/06/2018', '09:00', 'dsafsdfasdf', 'pendiente', NULL),
+(6, 'Aceite', '2018-06-19', '19/06/2018', '14:00', 'Cambio de aceite', 'aceptada', NULL),
+(7, 'Ruedas', '2018-06-19', '19/06/2018', '12:00', 'Cambio de ruedas', 'aceptada', 'murgado@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -127,40 +138,7 @@ CREATE TABLE `usuarios_citas` (
 --
 
 INSERT INTO `usuarios_citas` (`id_usuario`, `id_cita`) VALUES
-(2, 1),
-(3, 2),
-(2, 2),
-(2, 2),
-(2, 19),
-(2, 20),
-(2, 21),
-(2, 22),
-(2, 23),
-(2, 24),
-(2, 25),
-(2, 26),
-(2, 27),
-(2, 28),
-(2, 29),
-(2, 2),
-(2, 31),
-(2, 33),
-(2, 34),
-(2, 35),
-(2, 36),
-(2, 37),
-(2, 38),
-(2, 34),
-(2, 35),
-(2, 36),
-(2, 37),
-(2, 38),
-(2, 39),
-(5, 47),
-(2, 49),
-(5, 50),
-(2, 52),
-(2, 54);
+(2, 6);
 
 -- --------------------------------------------------------
 
@@ -209,6 +187,13 @@ ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `usuarios_citas`
+--
+ALTER TABLE `usuarios_citas`
+  ADD KEY `FK_PersonOrder` (`id_usuario`),
+  ADD KEY `FK_PersonOrder2` (`id_cita`);
+
+--
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
@@ -216,13 +201,24 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `citas`
 --
 ALTER TABLE `citas`
-  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `usuarios_citas`
+--
+ALTER TABLE `usuarios_citas`
+  ADD CONSTRAINT `FK_PersonOrder` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id`),
+  ADD CONSTRAINT `FK_PersonOrder2` FOREIGN KEY (`id_cita`) REFERENCES `citas` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
