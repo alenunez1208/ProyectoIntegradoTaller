@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.7
+-- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
--- Servidor: localhost
--- Tiempo de generación: 30-05-2018 a las 10:15:10
--- Versión del servidor: 10.1.31-MariaDB
--- Versión de PHP: 7.0.26
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 19-06-2018 a las 19:04:59
+-- Versión del servidor: 10.1.28-MariaDB
+-- Versión de PHP: 7.1.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,9 +19,9 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `id5701291_carquinto`
+-- Base de datos: `carquinto`
 --
-CREATE DATABASE IF NOT EXISTS `carquinto` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+CREATE DATABASE IF NOT EXISTS `carquinto` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
 USE `carquinto`;
 
 -- --------------------------------------------------------
@@ -37,16 +37,27 @@ CREATE TABLE `citas` (
   `fecha_esp` varchar(10) NOT NULL,
   `hora` varchar(5) NOT NULL,
   `motivo` varchar(500) NOT NULL,
-  `estado` varchar(15) NOT NULL
+  `estado` varchar(15) NOT NULL,
+  `email` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `cuentas`
+--
+
+CREATE TABLE `cuentas` (
+  `twitter` varchar(400) NOT NULL,
+  `calendar` varchar(800) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Volcado de datos para la tabla `citas`
+-- Volcado de datos para la tabla `cuentas`
 --
 
-INSERT INTO `citas` (`id`, `asunto`, `fecha`, `fecha_esp`, `hora`, `motivo`, `estado`) VALUES
-(1, 'Cambio de aceite', '2018-05-14', '2018-05-', '12:00', 'ssssssssss', 'pendiente'),
-(2, 'Ruedas', '2018-05-08', '12/08/2018', '12:00', 'cambio de ruedas', 'pendiente');
+INSERT INTO `cuentas` (`twitter`, `calendar`) VALUES
+('', '<iframe src=\"https://calendar.google.com/calendar/b/2/embed?showTitle=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;mode=WEEK&amp;height=600&amp;wkst=2&amp;hl=es&amp;bgcolor=%23FFFFFF&amp;src=carquintotaller%40gmail.com&amp;color=%231B887A&amp;ctz=Europe%2FMadrid\" style=\"border-width:0\" width=\"800\" height=\"600\" frameborder=\"0\" scrolling=\"no\"></iframe>');
 
 -- --------------------------------------------------------
 
@@ -96,19 +107,9 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `nombre`, `apellidos`, `email`, `password`, `telefono`, `tipo`, `activo`) VALUES
-(1, 'admin', 'admin', 'admin', 'admin', 666666666, 'admin', 1),
-(2, 'Alejandro', 'Nunez', 'ale@gmail.com', 'root', 655388778, 'usuario', 1),
-(3, 'Aitor', 'Menta', 'aitor@gmail.com', 'root', 655898989, 'usuario', 1),
-(4, 'Pedro', 'Gominola', 'pedro@gmail.com', 'root', 655877712, 'usuario', 1),
-(5, 'Angy', 'Fernandez', 'angy@gmail.com', 'root', 655898987, 'usuario', 1),
-(6, 'Antonio', 'Banderas', 'antonio@gmail.com', 'root', 655897841, 'usuario', 1),
-(7, 'Dolores', 'De Barriga', 'dolores@gmail.com', 'root', 65842336, 'usuario', 1),
-(8, 'Aaron', 'Delgado Vazquez', 'aaron.delgado.vazquez@gmail.com', 'root', 555443333, 'usuario', 1),
-(9, 'Manuel', 'Martínez', 'Manuel@gmail.com', 'root', 655838993, 'usuario', 1),
-(10, 'Áaaaa', 'Aaaa', 'Aaa@gmail.com', 'root', 2147483647, 'usuario', 1),
-(11, 'Tomas', 'Delgado', 'Tomas@gmail.com', 'root', 2147483647, 'usuario', 1),
-(12, 'Jesus', 'Martine', 'Jesus@gmail.com', 'root', 2147483647, 'usuario', 1),
-(13, 'Fran', 'Cuevas', 'fran@gmail.com', 'root', 2147483647, 'usuario', 1);
+(1, 'admin', 'admin', 'admin@gmail.com', 'admin', 655898989, 'admin', 1),
+(2, 'Alejandro', 'Nuñez', 'alenunezcdm@gmail.com', 'root', 655386780, 'usuario', 1),
+(8, 'Aaron', 'Delgado Vazquez', 'aaron.delgado.vazquez@gmail.com', 'root', 555443333, 'usuario', 1);
 
 -- --------------------------------------------------------
 
@@ -127,7 +128,39 @@ CREATE TABLE `usuarios_citas` (
 
 INSERT INTO `usuarios_citas` (`id_usuario`, `id_cita`) VALUES
 (2, 1),
-(5, 1);
+(3, 2),
+(2, 2),
+(2, 2),
+(2, 19),
+(2, 20),
+(2, 21),
+(2, 22),
+(2, 23),
+(2, 24),
+(2, 25),
+(2, 26),
+(2, 27),
+(2, 28),
+(2, 29),
+(2, 2),
+(2, 31),
+(2, 33),
+(2, 34),
+(2, 35),
+(2, 36),
+(2, 37),
+(2, 38),
+(2, 34),
+(2, 35),
+(2, 36),
+(2, 37),
+(2, 38),
+(2, 39),
+(5, 47),
+(2, 49),
+(5, 50),
+(2, 52),
+(2, 54);
 
 -- --------------------------------------------------------
 
@@ -137,12 +170,13 @@ INSERT INTO `usuarios_citas` (`id_usuario`, `id_cita`) VALUES
 --
 CREATE TABLE `vista_usuario_citas` (
 `id_usuario` int(10)
-,`apellidos` varchar(50)
 ,`nombre` varchar(50)
+,`apellidos` varchar(50)
 ,`email` varchar(50)
 ,`telefono` int(9)
 ,`id_cita` int(3)
 ,`asunto` varchar(50)
+,`fecha_ori` date
 ,`fecha` varchar(10)
 ,`hora` varchar(5)
 ,`motivo` varchar(500)
@@ -156,7 +190,7 @@ CREATE TABLE `vista_usuario_citas` (
 --
 DROP TABLE IF EXISTS `vista_usuario_citas`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`carquinto`@`%` SQL SECURITY DEFINER VIEW `vista_usuario_citas`  AS  select `u`.`id` AS `id_usuario`,`u`.`apellidos` AS `apellidos`,`u`.`nombre` AS `nombre`,`u`.`email` AS `email`,`u`.`telefono` AS `telefono`,`c`.`id` AS `id_cita`,`c`.`asunto` AS `asunto`,`c`.`fecha_esp` AS `fecha`,`c`.`hora` AS `hora`,`c`.`motivo` AS `motivo`,`c`.`estado` AS `estado` from ((`usuarios` `u` join `citas` `c`) join `usuarios_citas` `us`) where ((`us`.`id_usuario` = `u`.`id`) and (`us`.`id_cita` = `c`.`id`)) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vista_usuario_citas`  AS  select `u`.`id` AS `id_usuario`,`u`.`apellidos` AS `nombre`,`u`.`nombre` AS `apellidos`,`u`.`email` AS `email`,`u`.`telefono` AS `telefono`,`c`.`id` AS `id_cita`,`c`.`asunto` AS `asunto`,`c`.`fecha` AS `fecha_ori`,`c`.`fecha_esp` AS `fecha`,`c`.`hora` AS `hora`,`c`.`motivo` AS `motivo`,`c`.`estado` AS `estado` from ((`usuarios` `u` join `citas` `c`) join `usuarios_citas` `us`) where ((`us`.`id_usuario` = `u`.`id`) and (`us`.`id_cita` = `c`.`id`)) ;
 
 --
 -- Índices para tablas volcadas
@@ -175,32 +209,20 @@ ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `usuarios_citas`
---
-ALTER TABLE `usuarios_citas`
-  ADD KEY `FK_UsuarioId` (`id_usuario`),
-  ADD KEY `FK_CitaId` (`id_cita`);
-
---
 -- AUTO_INCREMENT de las tablas volcadas
 --
+
+--
+-- AUTO_INCREMENT de la tabla `citas`
+--
+ALTER TABLE `citas`
+  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
-
---
--- Restricciones para tablas volcadas
---
-
---
--- Filtros para la tabla `usuarios_citas`
---
-ALTER TABLE `usuarios_citas`
-  ADD CONSTRAINT `FK_CitaId` FOREIGN KEY (`id_cita`) REFERENCES `citas` (`id`),
-  ADD CONSTRAINT `FK_UsuarioId` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id`);
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
