@@ -1,20 +1,21 @@
 <?php
     require_once("funciones.php");
-
-    $enlace = $_POST["enlace"];
-    $plataforma = $_POST["plataforma"];
     
-    if($plataforma=="calendar"){        
+    $plataforma = $_POST["txtPlataforma"];
+    
+    if($plataforma=="calendar"){      
+        $enlace = $_POST["txtEnlaceCalendar"];  
         $sql= "UPDATE cuentas SET calendar='$enlace'";
-    } else if($plataforma=="twitter"){
+    } else if($plataforma=="twitter"){   
+        $enlace = $_POST["txtEnlaceTwitter"]; 
         $sql= "UPDATE cuentas SET twitter='$enlace'";
     }
 
     $resultset= miClase::ejecutaConsultaAccion($sql);
 
-    if($resultset){
-        echo json_encode(true);        
-    } else{
-        echo json_encode(false);
+    if($resultset){                    
+        header('Location: ../Controller/index.php');
+    } else{         
+        header('Location: ../Controller/index.php');   
     }
 ?>

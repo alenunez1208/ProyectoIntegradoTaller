@@ -124,3 +124,26 @@ function darDeAltaUsuario(oEvento) {
 		}
 	}, "text");
 }
+
+function filtroUsuario(oEvento){    
+	var oE = oEvento || windows.event;
+	var oForm= document.getElementById("frmFiltroEmailUsuario");
+
+	var emailUsuarioFiltrar= oForm.txtEmailFiltrarUsuario.value.trim();
+	var estadoUsuarioFiltrar= $('input:radio[name=radioEstadoUsuario]:checked').val();
+
+	// Instanciar objeto Ajax
+    var oAjax = instanciarXHR();
+
+	//1. Preparar parametros
+    var datos= "emailUsuario="+emailUsuarioFiltrar+"&radioEstado="+estadoUsuarioFiltrar;
+    //2. Configurar la llamada --> Asincrono por defecto
+    oAjax.open("POST","../Model/filtroUsuario.php");
+
+    //3. Asociar manejador de evento de la respuesta
+    oAjax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    oAjax.addEventListener("readystatechange", respuestaListadoUsuarios, false);
+
+    //4. Hacer la llamada
+    oAjax.send(datos);
+}

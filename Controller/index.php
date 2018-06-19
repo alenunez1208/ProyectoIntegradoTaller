@@ -10,10 +10,10 @@
         $_SESSION['cerrarSesion'] = true;
     }
     
-    if (isset($_POST['username']) && isset($_POST['password'])) {
+    if (isset($_POST['username']) && isset($_POST['password'])) {        
         $_SESSION['username']= $_POST['username'];
         $_SESSION['password']= $_POST['password'];
-    }
+    }    
 
     if (isset($_SESSION['username']) && isset($_SESSION['password']) && $_SESSION['cerrarSesion'] == false) {
         $usuario = miClase::obtieneUsuario($_SESSION['username'],$_SESSION['password']);
@@ -23,8 +23,7 @@
         $tlfUser= $usuario->getTelefono(); 
         $surnameUser= $usuario->getApellidos(); 
         $passUser= $usuario->getPassword(); 
-             
-    
+          
         if ($usuario->getTipo()=="usuario") { 
             require_once "../View/panelUsuario.html";
         } else if ($usuario->getTipo()=="admin"){

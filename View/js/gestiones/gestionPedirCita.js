@@ -48,16 +48,18 @@ function solicitarUnaCita(oEvento) {
     var oE = oEvento || windows.event;
     var oForm = document.getElementById("frmSolicitaCita");
 
-    var asunto = oForm.txtAsuntoCita.value.trim();
-    var fecha = oForm.txtFecha.value.trim();
-    var hora = oForm.comboHoras.options[comboHoras.selectedIndex].value.trim();
-    var descripcion = oForm.txtMotivoCita.value.trim();
-    var idUsu = document.getElementById("txtIdUsuario").value.trim();
-
-    var oCita = new Cita(idUsu, asunto, fecha, hora, descripcion);
-    var datos = "datos=" + JSON.stringify(oCita);
-
-    $.post("../Model/pedirCita.php", datos, respuestaPedirCita, "json");
+    if(validarPedirCita(oForm)){
+        var asunto = oForm.txtAsuntoCita.value.trim();
+        var fecha = oForm.txtFecha.value.trim();
+        var hora = oForm.comboHoras.options[comboHoras.selectedIndex].value.trim();
+        var descripcion = oForm.txtMotivoCita.value.trim();
+        var idUsu = document.getElementById("txtIdUsuario").value.trim();
+    
+        var oCita = new Cita(idUsu, asunto, fecha, hora, descripcion);
+        var datos = "datos=" + JSON.stringify(oCita);
+    
+        $.post("../Model/pedirCita.php", datos, respuestaPedirCita, "json");
+    }
 }
 
 function respuestaPedirCita(oDatosDevuelto, sStatus, oAjax) {
@@ -106,4 +108,56 @@ function cargarCalendar1() {
 
     //4. Hacer la llamada
     oAjax.send();
+}
+
+function validarPedirCita(frm){
+    var bValido= true;
+    var error= "";
+
+    //asunto
+    var asuntoCitaPedir= frm.txtAsuntoCita.value.trim();
+    frm.txtAsuntoCita.value= frm.txtAsuntoCita.value.trim();
+    
+    if(!oExpRegTitulo.test(asuntoCitaPedir)){
+        frm.txtAsuntoCita.parentNode.classList.add("has-error");
+		frm.txtAsuntoCita.focus();
+		error= "Debe comprender entre 3 y 25 caracteres";
+		falloValidacion(error, frm.txtAsuntoCita);
+		bValido= false;
+	} else{
+		frm.txtAsuntoCita.parentNode.classList.remove("has-error");
+		falloValidacion("", frm.txtAsuntoCita);
+    }
+
+    //fecha
+    var fechaCitaPedir= frm.txtFecha.value.trim();
+    frm.txtFecha.value= frm.txtFecha.value.trim();
+    
+    if(!oExpRegFecha.test(fechaCitaPedir)){
+        frm.txtFecha.parentNode.classList.add("has-error");
+		frm.txtFecha.focus();
+		error= "Formato incorrecto dd/mm/aaaa";
+		falloValidacion(error, frm.txtFecha);
+		bValido= false;
+	} else{
+		frm.txtFecha.parentNode.classList.remove("has-error");
+		falloValidacion("", frm.txtFecha);
+    }
+
+    //descripcion
+    var descripcionCitaPedir= frm.txtMotivoCita.value.trim();
+    frm.txtMotivoCita.value= frm.txtMotivoCita.value.trim();
+    
+    if(!oExpRegDescripcion.test(descripcionCitaPedir)){
+        frm.txtMotivoCita.parentNode.classList.add("has-error");
+		frm.txtMotivoCita.focus();
+		error= "Debe comprender entre 5 y 350 caracteres";
+		falloValidacion(error, frm.txtMotivoCita);
+		bValido= false;
+	} else{
+		frm.txtMotivoCita.parentNode.classList.remove("has-error");
+		falloValidacion("", frm.txtMotivoCita);
+    }
+
+    return bValido;
 }

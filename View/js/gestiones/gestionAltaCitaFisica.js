@@ -48,16 +48,18 @@ function altaCitaFisicaTaller(oEvento) {
     var oE = oEvento || windows.event;
     var oForm = document.getElementById("frmAltaCitaFisica");
 
-    var email = oForm.txtEmailFisico.value.trim();
-    var asunto = oForm.txtAsuntoCitaFisico.value.trim();
-    var fecha = oForm.txtFechaFisico.value.trim();
-    var hora = oForm.comboHoras.options[comboHoras.selectedIndex].value.trim();
-    var descripcion = oForm.txtMotivoCitaFisica.value.trim();
-
-    var oCita = new CitaFisica(email, asunto, fecha, hora, descripcion);
-    var datos = "datos=" + JSON.stringify(oCita);
-
-    $.post("../Model/altaCitaFisica.php", datos, respuestaAltaCitaFisica, "json");
+    if(validarCitaFisica(oForm)){
+        var email = oForm.txtEmailFisico.value.trim();
+        var asunto = oForm.txtAsuntoCitaFisico.value.trim();
+        var fecha = oForm.txtFechaFisico.value.trim();
+        var hora = oForm.comboHoras.options[comboHoras.selectedIndex].value.trim();
+        var descripcion = oForm.txtMotivoCitaFisica.value.trim();
+    
+        var oCita = new CitaFisica(email, asunto, fecha, hora, descripcion);
+        var datos = "datos=" + JSON.stringify(oCita);
+    
+        $.post("../Model/altaCitaFisica.php", datos, respuestaAltaCitaFisica, "json");
+    }
 }
 
 function respuestaAltaCitaFisica(oDatosDevuelto, sStatus, oAjax) {
@@ -107,4 +109,71 @@ function cargarCalendar2() {
 
     //4. Hacer la llamada
     oAjax.send();
+}
+
+function validarCitaFisica(frm){
+    var bValido= true;
+    var error= "";
+
+    //email
+    var  emailCitaFisica= frm.txtEmailFisico.value.trim();
+    frm.txtEmailFisico.value= frm.txtEmailFisico.value.trim();
+    
+    if(!oExpRegCorreo.test(emailCitaFisica)){
+        frm.txtEmailFisico.parentNode.classList.add("has-error");
+		frm.txtEmailFisico.focus();
+		error= "Formato de email incorrecto";
+		falloValidacion(error, frm.txtEmailFisico);
+		bValido= false;
+	} else{
+		frm.txtEmailFisico.parentNode.classList.remove("has-error");
+		falloValidacion("", frm.txtEmailFisico);
+    }
+
+    //asunto
+    var asuntoCitaFisica= frm.txtAsuntoCitaFisico.value.trim();
+    frm.txtAsuntoCitaFisico.value= frm.txtAsuntoCitaFisico.value.trim();
+    
+    if(!oExpRegTitulo.test(asuntoCitaFisica)){
+        frm.txtAsuntoCitaFisico.parentNode.classList.add("has-error");
+		frm.txtAsuntoCitaFisico.focus();
+		error= "Debe comprender entre 3 y 25 caracteres";
+		falloValidacion(error, frm.txtAsuntoCitaFisico);
+		bValido= false;
+	} else{
+		frm.txtAsuntoCitaFisico.parentNode.classList.remove("has-error");
+		falloValidacion("", frm.txtAsuntoCitaFisico);
+    }
+
+    //fecha
+    var fechaCitaFisica= frm.txtFechaFisico.value.trim();
+    frm.txtFechaFisico.value= frm.txtFechaFisico.value.trim();
+    
+    if(!oExpRegFecha.test(fechaCitaFisica)){
+        frm.txtFechaFisico.parentNode.classList.add("has-error");
+		frm.txtFechaFisico.focus();
+		error= "Formato incorrecto dd/mm/aaaa";
+		falloValidacion(error, frm.txtFechaFisico);
+		bValido= false;
+	} else{
+		frm.txtFechaFisico.parentNode.classList.remove("has-error");
+		falloValidacion("", frm.txtFechaFisico);
+    }
+
+    //descripcion
+    var descripcionCitaFisica= frm.txtMotivoCitaFisica.value.trim();
+    frm.txtMotivoCitaFisica.value= frm.txtMotivoCitaFisica.value.trim();
+    
+    if(!oExpRegDescripcion.test(descripcionCitaFisica)){
+        frm.txtMotivoCitaFisica.parentNode.classList.add("has-error");
+		frm.txtMotivoCitaFisica.focus();
+		error= "Debe comprender entre 5 y 350 caracteres";
+		falloValidacion(error, frm.txtMotivoCitaFisica);
+		bValido= false;
+	} else{
+		frm.txtMotivoCitaFisica.parentNode.classList.remove("has-error");
+		falloValidacion("", frm.txtMotivoCitaFisica);
+    }
+
+    return bValido;
 }

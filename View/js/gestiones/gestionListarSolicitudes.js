@@ -83,7 +83,7 @@ function respuestaListadoSolicitudesPendientes() {
 			oCelda = oFila.insertCell();
 			oTexto = document.createTextNode(oFilas[i].motivo);
 			oCelda.appendChild(oTexto);
-			oFila.innerHTML += "<td><button type='button' class='btn btn-success' name='btnAceptarCita' id='btnAceptarCita' onclick='aceptarCita(" + oFilas[i].id_cita + ",true)'><span class='glyphicon glyphicon-ok'></span></button> &nbsp <button type='button' class='btn btn-danger' name='btnRechazarCita' id='btnRechazarCita' onclick='aceptarCita(" + oFilas[i].id_cita + ",false)'><span class='glyphicon glyphicon-remove'></span></button></td>";
+			oFila.innerHTML += "<td><button type='button' class='btn btn-success' name='btnAceptarCita' id='btnAceptarCita' onclick='aceptarCita(" + oFilas[i].id_cita + ",true,"+oFilas[i].email+")'><span class='glyphicon glyphicon-ok'></span></button> &nbsp <button type='button' class='btn btn-danger' name='btnRechazarCita' id='btnRechazarCita' onclick='aceptarCita(" + oFilas[i].id_cita + ",false,"+oFilas[i].email+")'><span class='glyphicon glyphicon-remove'></span></button></td>";
 		}
 
 		oTabla.classList.add("table");
@@ -93,8 +93,8 @@ function respuestaListadoSolicitudesPendientes() {
 	}
 }
 
-function aceptarCita(idCita, bEstado) {
-		$.post("../Model/cambiarEstadoCita.php","iIdCita="+idCita+"&estado="+bEstado, function (sDatosDevuelto, sStatus, oAjax) {
+function aceptarCita(idCita, bEstado, email) {
+		$.post("../Model/cambiarEstadoCita.php","iIdCita="+idCita+"&estado="+bEstado+"&email="+email, function (sDatosDevuelto, sStatus, oAjax) {
 			if (sStatus == "success" && sDatosDevuelto == "Exito") {				
 				contadorDeCitasPendientes();
 				listadoSolicituesPendientes();

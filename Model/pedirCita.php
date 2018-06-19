@@ -15,7 +15,22 @@
             foreach($idCita as $citaId){                
                 $sql3= "INSERT INTO usuarios_citas(id_usuario,id_cita) values($oDatos->idUsuario, ".$citaId['id'].")";
                 $resultset3= miClase::ejecutaConsultaAccion($sql3);
-                echo json_encode(true);
+                
+                $to_address = "carquintotaller@gmail.com";
+                $from_address = "carquintotaller@gmail.com";
+                $subject = "CITA PENDIENTE";
+                $message = "Tienes una cita pediente de confirmar. Consulte las citas pendientes.";
+                $headers = array();
+                $headers[] = 'MIME-Version: 1.0';
+                $headers[] = 'Content-type: text/html; charset="iso-8859-1"' ;
+                $headers[] ='Content-Transfer-Encoding: 7bit' ;
+                $headers[] = 'From: ' . $from_address;
+                
+                $success = mail($to_address, $subject, $message,  join("\r\n",$headers));
+                
+                if($success){
+                    echo json_encode(true);
+                } 
             }
         } else{            
             echo json_encode(false);

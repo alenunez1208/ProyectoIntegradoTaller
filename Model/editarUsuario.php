@@ -10,12 +10,20 @@
     $tlf= $oDatos->passwordUsuario;
     $pass= $oDatos->tlfUsuario;
 
-    $sql= "UPDATE usuarios SET nombre='$nombre', apellidos='$apellidos', email='$email', password='$pass', telefono='$tlf' WHERE id='".$id."';";
-    $resultset= miClase::ejecutaConsultaAccion($sql);
-
-    if($resultset>0){
-        echo json_encode(true); 
+    $sql1= "SELECT id FROM usuarios WHERE email='$email'";
+    $res= miClase::ejecutaConsulta($sql1);
+    $row= $res->rowCount();    
+    
+    if($row>0){
+        echo json_encode("existe");
     } else{
-        echo json_encode(false);
-    } 
+        $sql= "UPDATE usuarios SET nombre='$nombre', apellidos='$apellidos', email='$email', password='$pass', telefono='$tlf' WHERE id='".$id."';";
+        $resultset= miClase::ejecutaConsultaAccion($sql);
+    
+        if($resultset>0){
+            echo json_encode(true); 
+        } else{
+            echo json_encode(false);
+        } 
+    }
 ?>

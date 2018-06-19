@@ -6,53 +6,59 @@
                 <h2>Nuevo Usuario</h2>
                 <br>
                 <form id="frmAltaUsuario" name="frmAltaUsuario">
-                    <div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                        <label for="txtNombre">Nombre
-                            <span class="asterisco">*</span>
-                        </label>
-                        <input type="text" class="form-control" name="txtNombre" id="txtNombre" placeholder="Nombre cliente" required>
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                        <div class="form-group">
+                            <label for="txtNombre">Nombre
+                                <span class="asterisco">*</span>
+                            </label>
+                            <input type="text" class="form-control" name="txtNombre" id="txtNombre" placeholder="Nombre cliente" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="txtEmail">Email
+                                <span class="asterisco">*</span>
+                            </label>
+                            <input type="text" class="form-control" name="txtEmail" id="txtEmail" placeholder="Email cliente" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="txtTlf">Teléfono
+                                <span class="asterisco">*</span>
+                            </label>
+                            <input type="text" class="form-control" name="txtTlf" id="txtTlf" placeholder="Teléfono cliente" required>
+                        </div>
                     </div>
-                    <div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                        <label for="txtApellidos">Apellidos
-                            <span class="asterisco">*</span>
-                        </label>
-                        <input type="text" class="form-control" name="txtApellidos" id="txtApellidos" placeholder="Apellidos cliente" required>
-                    </div>
-                    <div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                        <label for="txtEmail">Email
-                            <span class="asterisco">*</span>
-                        </label>
-                        <input type="text" class="form-control" name="txtEmail" id="txtEmail" placeholder="Email cliente" required>
-                    </div>
-                    <div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                        <label for="txtEmail2">Confirmar Email
-                            <span class="asterisco">*</span>
-                        </label>
-                        <input type="text" class="form-control" name="txtEmail2" id="txtEmail2" placeholder="Email cliente" required>
-                    </div>
-                    <div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                        <label for="txtTlf">Teléfono
-                            <span class="asterisco">*</span>
-                        </label>
-                        <input type="text" class="form-control" name="txtTlf" id="txtTlf" placeholder="Teléfono cliente" required>
-                    </div>
-                    <div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                        <label for="txtPassword">Contraseña
-                            <span class="asterisco">*</span>
-                        </label>
-                        <input type="password" class="form-control" name="txtPassword" id="txtPassword" placeholder="Contraseña cliente" required>
-                        <br>
-                        <br>
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                        <div class="form-group">
+                            <label for="txtApellidos">Apellidos
+                                <span class="asterisco">*</span>
+                            </label>
+                            <input type="text" class="form-control" name="txtApellidos" id="txtApellidos" placeholder="Apellidos cliente" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="txtEmail2">Confirmar Email
+                                <span class="asterisco">*</span>
+                            </label>
+                            <input type="text" class="form-control" name="txtEmail2" id="txtEmail2" placeholder="Email cliente" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="txtPassword">Contraseña
+                                <span class="asterisco">*</span>
+                            </label>
+                            <input type="password" class="form-control" name="txtPassword" id="txtPassword" placeholder="Contraseña cliente" required>
+                        </div>
                     </div>
 
-                    <div class="hidden-xs col-sm-2 col-md-3 col-lg-3"></div>
-                    <div class="form-group col-xs-12 col-sm-4 col-md-3 col-lg-3">
-                        <input type="button" id="btnAltaUsuario" name="btnAltaUsuario" class="btnAltaUsu btn btn-primary" value="Dar de alta"/>
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <br><br>
+                        <div class="hidden-xs col-sm-2 col-md-3 col-lg-3"></div>
+
+                        <div class="form-group col-xs-12 col-sm-4 col-md-3 col-lg-3">
+                            <input type="button" id="btnAltaUsuario" name="btnAltaUsuario" class="btnAltaUsu btn btn-primary" value="Dar de alta" />
+                        </div>
+                        <div class="form-group col-xs-12 col-sm-4 col-md-3 col-lg-3">
+                            <input type="reset" class="btn btn-danger btnAltaUsu" value="Limpiar Campos" />
+                        </div>
+                        <div class="hidden-xs col-sm-2 col-md-3 col-lg-3"></div>
                     </div>
-                    <div class="form-group col-xs-12 col-sm-4 col-md-3 col-lg-3">
-                        <input type="reset" class="btn btn-danger btnAltaUsu" value="Limpiar Campos" />
-                    </div>
-                    <div class="hidden-xs col-sm-2 col-md-3 col-lg-3"></div>
                 </form>
             </div>
             <div class="hidden-xs hidden-sm col-md-1 col-lg-1"></div>

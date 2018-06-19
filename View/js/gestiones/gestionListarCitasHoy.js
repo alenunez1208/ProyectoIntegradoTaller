@@ -69,37 +69,39 @@ function filtrarPorFecha(oEvento){
     var oE= oEvento || windows.event;
     var oForm= document.getElementById("frmFiltroFechas");
 
-    var fecha= oForm.txtFechaFiltrar.value.trim();
+    if(validarFiltroFecha(oForm)){
+        var fecha= oForm.txtFechaFiltrar.value.trim();
 
-    // Instanciar objeto Ajax
-    var oAjax = instanciarXHR();
-
-    //1. Preparar parametros
-    var datos= "datos="+fecha;
-    //2. Configurar la llamada --> Asincrono por defecto
-    oAjax.open("POST","../Model/listarCitasHoy.php");
-
-    //3. Asociar manejador de evento de la respuesta
-    oAjax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    oAjax.addEventListener("readystatechange", respuestaListadoCitasHoy, false);
-
-    //4. Hacer la llamada
-    oAjax.send(datos);
-
-    // Instanciar objeto Ajax
-    var oAjax2 = instanciarXHR();
-
-    //1. Preparar parametros
-    var datos2= "datos="+fecha;
-    //2. Configurar la llamada --> Asincrono por defecto
-    oAjax2.open("POST","../Model/listarCitasNoUser.php");
-
-    //3. Asociar manejador de evento de la respuesta
-    oAjax2.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    oAjax2.addEventListener("readystatechange", respuestaListadoCitasHoyNoUser, false);
-
-    //4. Hacer la llamada
-    oAjax2.send(datos2);
+        // Instanciar objeto Ajax
+        var oAjax = instanciarXHR();
+    
+        //1. Preparar parametros
+        var datos= "datos="+fecha;
+        //2. Configurar la llamada --> Asincrono por defecto
+        oAjax.open("POST","../Model/listarCitasHoy.php");
+    
+        //3. Asociar manejador de evento de la respuesta
+        oAjax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        oAjax.addEventListener("readystatechange", respuestaListadoCitasHoy, false);
+    
+        //4. Hacer la llamada
+        oAjax.send(datos);
+    
+        // Instanciar objeto Ajax
+        var oAjax2 = instanciarXHR();
+    
+        //1. Preparar parametros
+        var datos2= "datos="+fecha;
+        //2. Configurar la llamada --> Asincrono por defecto
+        oAjax2.open("POST","../Model/listarCitasNoUser.php");
+    
+        //3. Asociar manejador de evento de la respuesta
+        oAjax2.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        oAjax2.addEventListener("readystatechange", respuestaListadoCitasHoyNoUser, false);
+    
+        //4. Hacer la llamada
+        oAjax2.send(datos2);
+    }
 }
 
 function respuestaListadoCitasHoy(){
@@ -158,4 +160,26 @@ function respuestaListadoCitasHoyNoUser(){
         
 		oCapaList2.appendChild(oLista);
     }
+}
+
+function validarFiltroFecha(frm){
+    var bValido= true;
+    var error= "";
+
+    //fecha
+    var  fechaFiltroValidar= frm.txtFechaFiltrar.value.trim();
+    frm.txtFechaFiltrar.value= frm.txtFechaFiltrar.value.trim();
+    
+    if(!oExpRegFecha.test(fechaFiltroValidar)){
+        frm.txtFechaFiltrar.parentNode.classList.add("has-error");
+		frm.txtFechaFiltrar.focus();
+		error= "Formato incorrecto dd/mm/aaaa";
+		falloValidacion(error, frm.txtFechaFiltrar);
+		bValido= false;
+	} else{
+		frm.txtFechaFiltrar.parentNode.classList.remove("has-error");
+		falloValidacion("", frm.txtFechaFiltrar);
+    }
+
+    return bValido;
 }

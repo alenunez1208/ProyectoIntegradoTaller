@@ -13,8 +13,21 @@
         $resultset2= miClase::ejecutaConsultaAccion($sql);
 
         if($resultset2){
-            echo json_encode(true);
+            $to_address = "carquintotaller@gmail.com";
+            $from_address = $oDatos->emailUsuario;
+            $subject = "BIENVENIDO";
+            $message = "Bienvenido a nuestra plataforma online donde solo lo privilegiados podrán acceder.";
+            $headers = array();
+            $headers[] = 'MIME-Version: 1.0';
+            $headers[] = 'Content-type: text/html; charset="iso-8859-1"' ;
+            $headers[] ='Content-Transfer-Encoding: 7bit' ;
+            $headers[] = 'From: ' . $from_address;
             
+            $success = mail($to_address, $subject, $message,  join("\r\n",$headers));
+            
+            if($success){
+                echo json_encode(true);
+            }            
         } else{
             echo json_encode(false);
         }

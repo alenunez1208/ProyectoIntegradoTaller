@@ -6,7 +6,8 @@
             <br>
             <br>
             <br>
-            <form id="frmCambiarTwitter" name="frmCambiarTwitter">
+            <form id="frmCambiarTwitter" name="frmCambiarTwitter" method="post" action="../Model/cuentas.php">
+                <input type="hidden" id="txtPlataforma" name="txtPlataforma" value="twitter">
                 <div class="form-inline col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     <label for="txtEnlaceTwitter" class="col-xs-12 col-sm-2 col-md-2 col-lg-2">Twitter
                         <span class="asterisco">*</span>
@@ -16,7 +17,7 @@
                             placeholder="Enlace" required>
                     </span>
                     <span class=" col-xs-12 col-sm-2 col-md-2 col-lg-2">
-                        <button type="button" id="btnCambiarEnlaceTwitter" name="btnCambiarEnlaceTwitter" class="btn btn-primary">Guardar Cambio</button>
+                        <button type="submit" id="btnCambiarEnlaceTwitter" name="btnCambiarEnlaceTwitter" class="btn btn-primary">Guardar Cambio</button>
                     </span>
                 </div>
             </form>
@@ -25,7 +26,10 @@
             <br>
             <br>
 
-            <form id="frmCambiarCalendar" name="frmCambiarCalendar">
+            <form id="frmCambiarCalendar" name="frmCambiarCalendar" method="post" action="../Model/modificarCuentas.php">
+                <input type="hidden" id="txtPlataforma" name="txtPlataforma" value="calendar">                
+		        <input type="hidden" name="txtEmailUsuario" id="txtEmailUsuarioSession" value="<?php echo $emailUser; ?>">
+                <input type="hidden" name="txtPasswordUsuario" id="txtPasswordUsuarioSession" value="<?php echo $passUser; ?>">
                 <div class="form-inline col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     <label for="txtEnlaceCalendar" class="col-xs-12 col-sm-2 col-md-2 col-lg-2">Google Calendar
                         <span class="asterisco">*</span>
@@ -35,7 +39,7 @@
                             placeholder="Enlace" required>
                     </span>
                     <span class=" col-xs-12 col-sm-2 col-md-2 col-lg-2">
-                        <button type="button" id="btnCambiarEnlaceCalendar" name="btnCambiarEnlaceCalendar" class="btn btn-primary">Guardar Cambio</button>
+                        <button type="submit" id="btnCambiarEnlaceCalendar" name="btnCambiarEnlaceCalendar" class="btn btn-primary">Guardar Cambio</button>
                     </span>
                 </div>
             </form>

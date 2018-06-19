@@ -4,12 +4,51 @@ $("#myBtn").click(function () {
     if ($("#myModal").length == 0) {
         $('#formLogin').load("../View/formularios/login.html", function () {
             $("#myModal").modal();
+            //var btnLogearse = document.getElementById("btnLogin");
+            //btnLogearse.addEventListener("click", formularioLoginValidar, false);
         });
     } else {
         $('#myModal').show("normal");
+        //var btnLogearse = document.getElementById("btnLogin");
+        //btnLogearse.addEventListener("click", formularioLoginValidar, false);
     }
 
 });
+/*
+function formularioLoginValidar(oEvento) {
+    var oE = oEvento || windows.event;
+    var oForm = document.getElementById("formularioLogin");
+
+    if(validarLogin(oForm)){
+        var ul= oForm.username.value.trim();
+        var pl= oForm.password.value.trim();
+
+        datos= "username="+ul+"&password="+pl;
+
+        $.post("../Controller/index.php", datos);
+    }
+}
+
+function validarLogin(frm) {
+    var error = "";
+    var bValido= true;
+
+    var usernameLogin = frm.username.value.trim();
+    frm.username.value = frm.username.value.trim();
+
+    if (usernameLogin == "") {
+        frm.username.parentNode.classList.add("has-error");
+        frm.username.focus();
+        error = "";
+        falloValidacion(error, frm.username);
+        bValido = false;
+    } else {
+        frm.username.parentNode.classList.remove("has-error");
+        falloValidacion("", frm.username);
+    }
+
+    return bValido;
+}*/
 /*----------------------------------------------------------------*/
 /*--------------------------SIN LOGUEO----------------------------*/
 var bFormularioPreguntasCargado = false;
@@ -251,11 +290,16 @@ function cargarFrmListadoUsuarios() {
     if ($('#frmListadoUsuariosMostrar').length == 0) {
         $("<div class='frmListadoUsuariosMostrar'>").appendTo('#formularioAdmin').load("../View/formularios/frmListadoUsuarios.html");
         $.getScript("../View/js/gestiones/gestionListarUsuarios.js", function () {
+            var btnFiltroUsuario = document.getElementById("btnFiltrarEmailUsuario");
+            btnFiltroUsuario.addEventListener("click", filtroUsuario, false);
             listadoUsuarios();
             contadorDeCitasPendientes();
         });
     } else {
         $('.frmListadoUsuariosMostrar').css("display", "block");
+        document.frmFiltroEmailUsuario.reset();
+        var btnFiltroCita = document.getElementById("btnFiltrarEmailUsuario");
+        btnFiltroCita.addEventListener("click", filtroUsuario, false);
         listadoUsuarios();
         contadorDeCitasPendientes();
     }
@@ -330,18 +374,10 @@ function cargarFrmAdmCuentas() {
     if ($('#frmConfigurarCuentasMostrar').length == 0) {
         $("<div class='frmConfigurarCuentasMostrar'>").appendTo('#formularioAdmin').load("../View/formularios/frmConfigurarCuentas.html");
         $.getScript("../View/js/gestiones/gestionConfigurarCuentas.js", function () {
-            var btnActualizarTwitter = document.getElementById("btnCambiarEnlaceTwitter");
-            btnActualizarTwitter.addEventListener("click", actualizarTwitter, false);
-            var btnActualizarCalendar = document.getElementById("btnCambiarEnlaceCalendar");
-            btnActualizarCalendar.addEventListener("click", actualizarCalendar, false);
             contadorDeCitasPendientes();
         });
     } else {
         $('.frmConfigurarCuentasMostrar').css("display", "block");
-        var btnActualizarTwitter = document.getElementById("btnCambiarEnlaceTwitter");
-        btnActualizarTwitter.addEventListener("click", actualizarTwitter, false);
-        var btnActualizarCalendar = document.getElementById("btnCambiarEnlaceCalendar");
-        btnActualizarCalendar.addEventListener("click", actualizarCalendar, false);
         contadorDeCitasPendientes();
     }
 }
@@ -361,4 +397,27 @@ function contadorDeCitasPendientes() {
         }
     }, "text");
 }
+/*----------------------------------------------------------------*/
+/*----------------------EXPRESIONES REGULARES---------------------*/
+function falloValidacion(sTexto, oInput) {
+    var oTexto = document.createTextNode(sTexto);
+    var oDiv = document.createElement("div");
+    oDiv.setAttribute("id", "error");
+    oDiv.appendChild(oTexto);
+    var oAnterior = oInput.parentNode.querySelector("#error");
+
+    if (oAnterior)
+        oAnterior.textContent = sTexto;
+    else
+        oInput.parentNode.appendChild(oDiv);
+}
+
+var oExpRegTitulo = /^[a-z\s]{3,25}$/i; //ENTRE 3 y 25 CARACTERES
+var oExpRegNombre = /^[a-z\s]{3,20}$/i; //ENTRE 3 y 20 CARACTERES
+var oExpRegApellidos = /^[a-z\s]{3,30}$/i; //ENTRE 3 y 30 CARACTERES
+var oExpRegPass = /^[A-Za-z0-9\s]{4,12}$/i; //ENTRE 4 y 12 CARACTERES ALFANUMERICOS
+var oExpRegCorreo = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/i; //EMAIL CORREO
+var oExpRegTelefono = /^(\+34|0034|34)?[6|7|9][0-9]{8}$/; //TELEFONOS ESPAÑOLES
+var oExpRegDescripcion = /^[a-z\s\d-]{5,350}$/i; // entre 5 y 350 caracteres con numeros
+var oExpRegFecha = /^(?:3[01]|[12][0-9]|0?[1-9])([\-/.])(0?[1-9]|1[1-2])\1\d{4}$/;
 /*----------------------------------------------------------------*/

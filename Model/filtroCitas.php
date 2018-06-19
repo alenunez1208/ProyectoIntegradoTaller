@@ -3,7 +3,6 @@
    
     $emailUsuFiltro= $_POST["emailFiltroUsuario"];
     $estadoCitaUsu= $_POST["radioEstado"];
-    //$estadoCitaUsu= "aceptada";
     
     if($estadoCitaUsu=="todas"){
         if($emailUsuFiltro==""){
